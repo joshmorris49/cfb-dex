@@ -1,5 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
 <title>Gridiron Dex</title>
-<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Graduate&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700&display=swap">
 <style>
@@ -119,6 +129,8 @@ dialog::backdrop{background:rgba(8,14,10,.55)}
 @media (prefers-reduced-motion:reduce){.card{transition:none}}
 </style>
 
+</head>
+<body>
 <div class="wrap">
   <header>
     <span class="eyebrow">FBS · 2026 season through Oct. 20 · 138 teams · national dex #1–1025</span>
@@ -325,3 +337,6 @@ function open(team){
 grid.addEventListener("click", e=>{ const c = e.target.closest(".card"); if(c) open(c.dataset.team); });
 dlg.addEventListener("click", e=>{ if(e.target===dlg) dlg.close(); });
 </script>
+
+</body>
+</html>
