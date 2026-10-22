@@ -1,0 +1,327 @@
+<title>Gridiron Dex</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Graduate&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700&display=swap">
+<style>
+/* Layout: a chalked stat-sheet field guide. Filters on top, school-color dex cards in a grid, a bottom sheet per entry.
+   Each card pairs the team's stat shape (school color) with its Pokémon's (dashed outline): offense on the right, defense on the left. */
+:root{
+  --bg:#eef1ec; --surface:#ffffff; --ink:#16201a; --muted:#5d6b62; --line:#d3dad3;
+  --turf:#1f5a36; --chalk:#f7f8f4; --track:#e3e8e2; --mon:#33413a;
+  --f-display:"Graduate","Rockwell","Georgia",serif;
+  --f-body:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-data:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1512; --surface:#18201b; --ink:#e7ece6; --muted:#97a59b; --line:#2f3a33;
+  --turf:#5fbf83; --chalk:#121a15; --track:#26302a; --mon:#cbd5ce; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1512; --surface:#18201b; --ink:#e7ece6; --muted:#97a59b; --line:#2f3a33;
+  --turf:#5fbf83; --chalk:#121a15; --track:#26302a; --mon:#cbd5ce; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.45;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px}
+.wrap{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+header{display:flex;flex-direction:column;gap:6px;padding-bottom:14px;border-bottom:2px dashed var(--line)}
+.eyebrow{font-family:var(--f-data);font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:12px;color:var(--turf)}
+h1{font-family:var(--f-display);font-weight:400;font-size:clamp(30px,6vw,46px);line-height:1.05;margin:0;text-wrap:balance}
+.lede{margin:0;color:var(--muted);max-width:64ch}
+
+.filters{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.filters input,.filters select{font:500 15px var(--f-body);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:8px 10px;min-width:0}
+.filters input{flex:1 1 200px}
+.filters select{flex:0 1 200px}
+.count{font:600 13px var(--f-data);letter-spacing:.06em;color:var(--muted);text-transform:uppercase}
+.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.controls .lbl{font-family:var(--f-data);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-right:4px}
+.chip{font:600 14px var(--f-data);letter-spacing:.04em;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--turf);border-color:var(--turf);color:var(--chalk)}
+.chip:focus-visible,.card:focus-visible,.close:focus-visible,.filters input:focus-visible,.filters select:focus-visible{outline:2px solid var(--turf);outline-offset:2px}
+.howto{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center;margin:0;font:500 13px var(--f-body);color:var(--muted)}
+.howto span{display:inline-flex;align-items:center;gap:6px}
+.sw-team{width:14px;height:10px;border-radius:2px;background:var(--muted);opacity:.7}
+.sw-mon{width:16px;height:0;border-top:2px dashed var(--mon)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.empty{color:var(--muted);padding:24px 0}
+.card{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;background:var(--surface);
+  border:1px solid var(--line);border-radius:8px;overflow:hidden;transition:transform .15s,box-shadow .15s}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(10,20,14,.14)}
+.band{background:var(--c1);color:var(--fg);border-bottom:4px solid var(--c2);padding:10px 12px 9px;display:flex;flex-direction:column;gap:3px}
+.band-top{display:flex;justify-content:space-between;gap:8px;font:700 12px var(--f-data);letter-spacing:.08em;opacity:.88;font-variant-numeric:tabular-nums}
+.band .team{font-family:var(--f-display);font-size:19px;line-height:1.1;overflow-wrap:anywhere}
+.band .conf{font:600 11px var(--f-data);letter-spacing:.12em;text-transform:uppercase;opacity:.85}
+.body{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px 12px 12px}
+.match{display:flex;flex-direction:column;gap:5px;min-width:0}
+.match .lbl{font:600 11px var(--f-data);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.match .pk{font:700 19px var(--f-data);color:var(--ink);line-height:1.05;overflow-wrap:anywhere}
+.pkrow{display:flex;align-items:center;gap:8px;min-width:0}
+.slot{flex:none;display:grid;place-items:center;border:1.5px dashed var(--line);border-radius:6px;background:var(--track);color:var(--muted);font:600 11px var(--f-data);letter-spacing:.04em;overflow:hidden;font-variant-numeric:tabular-nums}
+.slot img{width:100%;height:100%;object-fit:contain;image-rendering:pixelated}
+.slot.has-img{border-style:solid;background:transparent}
+.slot-sm{width:44px;height:44px}
+.slot-lg{width:88px;height:88px;font-size:13px}
+.fitline{font:600 12px var(--f-data);color:var(--muted);letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.types{display:flex;flex-wrap:wrap;gap:4px}
+.type{font:700 11px var(--f-data);letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:3px;color:#fff;background:var(--t)}
+.radar-sm{width:86px;height:86px;display:block}
+.r-grid{fill:none;stroke:var(--line);stroke-width:1;vector-effect:non-scaling-stroke}
+.r-team{fill:var(--tc);fill-opacity:.3;stroke:var(--tc);stroke-width:2;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.r-mon{fill:none;stroke:var(--mon);stroke-width:1.5;stroke-dasharray:4 3;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.r-lab{font:600 12px var(--f-data);fill:var(--muted);letter-spacing:.04em}
+
+.notes{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.notes h2{font-family:var(--f-display);font-weight:400;font-size:20px;margin:0 0 8px}
+.notes p,.notes li{color:var(--muted);margin:0;font-size:14px}
+.notes ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
+.notes b{color:var(--ink);font-weight:600}
+.notes a{color:var(--turf)}
+
+dialog{border:none;padding:0;background:transparent;max-width:640px;width:100%;margin:auto auto 0;color:var(--ink)}
+@media (min-width:700px){dialog{margin:auto}}
+dialog::backdrop{background:rgba(8,14,10,.55)}
+.sheet{background:var(--surface);border-radius:12px 12px 0 0;max-height:88vh;overflow-y:auto}
+@media (min-width:700px){.sheet{border-radius:12px}}
+.sh-band{background:var(--c1);color:var(--fg);border-bottom:5px solid var(--c2);display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+  padding:16px max(18px,env(safe-area-inset-right,0px)) 14px max(18px,env(safe-area-inset-left,0px))}
+.sh-band .meta{font:700 12px var(--f-data);letter-spacing:.08em;opacity:.88}
+.sh-band h2{font-family:var(--f-display);font-weight:400;font-size:28px;margin:4px 0 0;line-height:1.1}
+.close{all:unset;cursor:pointer;font:600 14px var(--f-data);letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;border:1px solid currentColor;border-radius:999px;opacity:.9;flex:none}
+.sh-body{display:flex;flex-direction:column;gap:16px;padding:16px max(18px,env(safe-area-inset-right,0px)) calc(22px + env(safe-area-inset-bottom,0px)) max(18px,env(safe-area-inset-left,0px))}
+.matchrow{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;padding:12px;border:1px dashed var(--line);border-radius:6px}
+.matchrow .num{font:700 13px var(--f-data);letter-spacing:.08em;color:var(--muted)}
+.matchrow .pk{font:700 22px var(--f-data);color:var(--ink)}
+.fit{font:600 13px var(--f-data);color:var(--muted);letter-spacing:.04em}
+.fit b{color:var(--ink);font-size:16px}
+.matchrow a{font:600 13px var(--f-data);color:var(--turf);margin-left:auto}
+.blurb{margin:0;color:var(--muted)}
+.blurb b{color:var(--ink)}
+.chart{display:flex;flex-direction:column;align-items:center;gap:6px;margin:0}
+.radar-lg{width:100%;max-width:320px;height:auto;display:block}
+.sides{display:flex;justify-content:space-between;width:100%;max-width:320px;font:600 11px var(--f-data);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font:600 12px var(--f-data);color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend .sw-team{background:var(--tc);opacity:1}
+.stats{display:flex;flex-direction:column;gap:12px}
+.srow{display:grid;grid-template-columns:96px 1fr;gap:4px 12px;align-items:center}
+.sname{font:700 14px var(--f-data);letter-spacing:.04em;line-height:1.1}
+.sname small{display:block;font-weight:500;font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.bars{display:flex;flex-direction:column;gap:3px;min-width:0}
+.bar{display:grid;grid-template-columns:1fr 34px;gap:8px;align-items:center}
+.track{height:9px;background:var(--track);border-radius:2px;overflow:hidden}
+.fill{height:100%;border-radius:2px}
+.fill.t{background:var(--tc)}
+.fill.m{background:var(--mon);opacity:.6}
+.val{font:600 13px var(--f-data);text-align:right;font-variant-numeric:tabular-nums}
+.raw{grid-column:2;font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+@media (max-width:420px){.srow{grid-template-columns:1fr}.raw{grid-column:1}}
+@media (prefers-reduced-motion:reduce){.card{transition:none}}
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">FBS · 2026 season through Oct. 20 · 138 teams · national dex #1–1025</span>
+    <h1>Gridiron Dex</h1>
+    <p class="lede">Every FBS team scored on six base stats from its 2026 season so far, adjusted for the strength of the opponents it faced, then matched to the Pokémon with the closest stat line out of all 1,025. No two teams share a match. Tap a team to see the breakdown.</p>
+  </header>
+
+  <div class="filters">
+    <input id="q" type="search" placeholder="Search a team or Pokémon" aria-label="Search a team or Pokémon">
+    <select id="cf" aria-label="Conference"><option value="">All conferences</option></select>
+    <span class="count" id="count"></span>
+  </div>
+
+  <div class="controls" role="group" aria-label="Sort teams">
+    <span class="lbl">Sort</span>
+    <button class="chip" id="s-bst" data-k="bst" aria-pressed="true">Total</button>
+    <button class="chip" id="s-hp" data-k="hp" aria-pressed="false">Program</button>
+    <button class="chip" id="s-atk" data-k="atk" aria-pressed="false">Rush O</button>
+    <button class="chip" id="s-def" data-k="def" aria-pressed="false">Rush D</button>
+    <button class="chip" id="s-spa" data-k="spa" aria-pressed="false">Pass O</button>
+    <button class="chip" id="s-spd" data-k="spd" aria-pressed="false">Pass D</button>
+    <button class="chip" id="s-spe" data-k="spe" aria-pressed="false">Big Play</button>
+    <button class="chip" id="s-fit" data-k="fit" aria-pressed="false">Best fit</button>
+    <button class="chip" id="s-sos" data-k="sos" aria-pressed="false">Toughest schedule</button>
+    <button class="chip" id="s-move" data-k="move" aria-pressed="false">Biggest climb</button>
+    <button class="chip" id="s-az" data-k="az" aria-pressed="false">A–Z</button>
+  </div>
+
+  <p class="howto"><span><i class="sw-team"></i>Filled shape: the team, in its school color</span><span><i class="sw-mon"></i>Dashed outline: its Pokémon</span><span>Program on top, offense on the right, defense on the left, big plays at the bottom</span></p>
+
+  <main class="grid" id="grid"></main>
+
+  <section class="notes">
+    <div>
+      <h2>How the stats work</h2>
+      <ul>
+        <li><b>HP · Program</b>: roster talent (half), the 2026 recruiting class (a quarter) and the 2026 preseason AP poll (a quarter).</li>
+        <li><b>Attack · Rush O</b>: rush yards per game, rush TDs per game, yards per carry.</li>
+        <li><b>Defense · Rush D</b>: rush yards, yards per carry and rush TDs allowed.</li>
+        <li><b>Sp. Atk · Pass O</b>: pass yards per game, pass TDs per game, passer rating.</li>
+        <li><b>Sp. Def · Pass D</b>: pass yards allowed, opponent passer rating, interceptions.</li>
+        <li><b>Speed · Big Play</b>: explosive plays gained and allowed (runs of 20+ yards, completions of 25+), takeaways and giveaways, and special teams (returns, coverage, punting, FG%).</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Schedule adjustment</h2>
+      <p>Raw season numbers reward teams that played weak opponents. So each unit is credited for who it faced: a rushing offense is judged against the run defenses on its schedule, a pass defense against the passing offenses it saw, explosive plays against the explosive plays those opponents allow, takeaways against how well opponents protect the ball, and returns against the coverage units they met. Every unit is solved together for all 138 teams from every 2026 game played so far. FCS opponents count as a little weaker than the weakest FBS teams. Program, punting and FG% aren't adjusted.</p>
+      <p style="margin-top:8px">With only six or seven games played, the adjustment is still noisy. Against this week's SP+ top 25 this ranking shares 20 teams (21 before the adjustment), and it will settle as more games are played. Total also includes Program, which SP+ leaves out.</p>
+    </div>
+    <div>
+      <h2>Scale and matching</h2>
+      <p>Each adjusted rating is ranked against all 138 FBS teams. That standing is then placed on the national dex's own spread for that stat, so a median FBS team gets a median Pokémon value and a team two steps above average gets a value only about 2% of Pokémon reach. Each team's six stats are compared with every Pokémon's base stats, and the set of one-to-one pairings with the smallest total gap wins. Fit is how close the pairing is, out of 100. Most teams get their single closest Pokémon; the rest get their second or third choice because a nearby team needed it more.</p>
+    </div>
+    <div>
+      <h2>Notes</h2>
+      <ul>
+        <li>Return and coverage averages are pulled toward the FBS average, so a team with only a few returns isn't judged on one long run back.</li>
+        <li>Army was outside 247's top 150 recruiting classes for 2026, so its class score is estimated just below #150.</li>
+        <li>North Dakota State and Sacramento State are new to FBS this season.</li>
+        <li>Each card has an empty image slot labeled with its Pokémon's dex number. On your own saved copy, put images in a <b>sprites</b> folder next to the page, named by dex number (sprites/493.png), and set <b>SPRITE_DIR</b> to "sprites/" at the top of the page's script.</li>
+      </ul>
+      <p style="margin-top:10px">Stats and schedules: <a href="https://cfbstats.com/2026/conference/index.html">cfbstats.com</a> (all games through Oct. 20). Roster talent: <a href="https://247sports.com/season/2026-football/collegeteamtalentrating/">247Sports Team Talent Composite</a>. Recruiting: <a href="https://247sports.com/Season/2026-Football/CompositeTeamRankings/">247Sports</a>. Preseason poll: <a href="https://fbschedules.com/ap-top-25-poll-released-ahead-of-2026-college-football-season/">AP via FBSchedules</a>. SP+ comparison: <a href="https://cfbupdate.com/sp-ratings">CFB Update</a>. Base stats: <a href="https://pokemondb.net/pokedex/all">PokémonDB</a>. School colors: <a href="https://teamcolorcodes.com/ncaa-color-codes/sec-team-color-codes/">Team Color Codes</a>.</p>
+    </div>
+  </section>
+</div>
+
+<dialog id="dlg" aria-labelledby="dlg-title"><div class="sheet" id="sheet"></div></dialog>
+
+<script>
+const DATA = __DATA__;
+const TYPE = {Normal:"#75755b",Fire:"#bd5523",Water:"#3772d2",Electric:"#8b710b",Grass:"#47802c",Ice:"#347f7f",Fighting:"#a8322b",
+  Poison:"#8c3f8c",Ground:"#906e28",Flying:"#6f67bf",Psychic:"#ce3b64",Bug:"#6c7926",Rock:"#84722d",Ghost:"#5e4c87",
+  Dragon:"#5d36d6",Dark:"#4f4440",Steel:"#71718b",Fairy:"#b54f85"};
+const KEYS = ["hp","atk","def","spa","spd","spe"];
+const NAMES = {hp:["HP","Program"],atk:["Attack","Rush O"],def:["Defense","Rush D"],spa:["Sp. Atk","Pass O"],spd:["Sp. Def","Pass D"],spe:["Speed","Big Play"]};
+// Clockwise from the top: program, then offense down the right side, big plays at the bottom, defense up the left.
+const AX = ["hp","atk","spa","spe","spd","def"];
+const MAX = 160;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const pad = n => "#" + String(n).padStart(3,"0");
+const types = ts => `<span class="types">${ts.map(t=>`<span class="type" style="--t:${TYPE[t]||"#777"}">${t}</span>`).join("")}</span>`;
+const ord = n => n + (["th","st","nd","rd"][(n%100>10&&n%100<14)?0:(n%10<4?n%10:0)]);
+const vars = d => `--c1:${d.col.c1};--c2:${d.col.c2};--fg:${d.col.fg};--tc:${d.col.tc}`;
+
+const ang = i => (-90 + 60*i) * Math.PI / 180;
+const pts = (st, R) => AX.map((k,i)=>{ const r = R*Math.min(st[k],MAX)/MAX; return `${(r*Math.cos(ang(i))).toFixed(1)},${(r*Math.sin(ang(i))).toFixed(1)}`; }).join(" ");
+const ring = (R) => AX.map((k,i)=>`${(R*Math.cos(ang(i))).toFixed(1)},${(R*Math.sin(ang(i))).toFixed(1)}`).join(" ");
+function radar(d, big){
+  const R = big ? 92 : 44;
+  const rings = (big ? [.25,.5,.75,1] : [.5,1]).map(f=>`<polygon class="r-grid" points="${ring(R*f)}"/>`).join("");
+  const spokes = big ? AX.map((k,i)=>`<line class="r-grid" x1="0" y1="0" x2="${(R*Math.cos(ang(i))).toFixed(1)}" y2="${(R*Math.sin(ang(i))).toFixed(1)}"/>`).join("") : "";
+  const labels = big ? AX.map((k,i)=>{
+    const x = (R+12)*Math.cos(ang(i)), y = (R+12)*Math.sin(ang(i));
+    const anchor = Math.abs(x) < 1 ? "middle" : x > 0 ? "start" : "end";
+    const dy = y < -1 ? -3 : y > 1 ? 12 : 4;
+    return `<text class="r-lab" x="${x.toFixed(1)}" y="${(y+dy).toFixed(1)}" text-anchor="${anchor}">${NAMES[k][1]} ${d.stats[k]}</text>`;
+  }).join("") : "";
+  const attrs = big ? `viewBox="-160 -124 320 248" role="img" aria-label="${esc(d.team)}'s stat shape compared with ${esc(d.match.name)}'s"` : `viewBox="-50 -50 100 100" aria-hidden="true"`;
+  return `<svg class="${big?"radar-lg":"radar-sm"}" ${attrs}>${rings}${spokes}<polygon class="r-team" points="${pts(d.stats,R)}"/><polygon class="r-mon" points="${pts(d.match.stats,R)}"/>${labels}</svg>`;
+}
+
+const move = d => { const m = d.raw_dex - d.dex; return m > 0 ? `▲${m}` : m < 0 ? `▼${-m}` : "–"; };
+function badge(d){
+  if (sortKey in NAMES) return NAMES[sortKey][1] + " " + d.stats[sortKey];
+  if (sortKey === "fit") return "Fit " + d.match.fit;
+  if (sortKey === "sos") return `Schedule #${d.sos_rank}`;
+  if (sortKey === "move") return `${move(d)} from #${d.raw_dex}`;
+  return "Total " + d.bst;
+}
+/* Sprite slots
+   Each card has an empty image slot keyed to its Pokémon's national dex number.
+   To fill them on your own copy: save this page, put your images in a folder next to it
+   named by dex number (sprites/1.png ... sprites/1025.png), and set SPRITE_DIR below to "sprites/".
+   Left empty, the page loads no images and shows the dex number in each slot. */
+const SPRITE_DIR = "";
+const SPRITE_EXT = ".png";
+function slot(num, size){
+  const ph = `#${num}`;
+  if (!SPRITE_DIR) return `<span class="slot slot-${size}" data-dex="${num}" aria-hidden="true">${ph}</span>`;
+  return `<span class="slot slot-${size} has-img" data-dex="${num}" aria-hidden="true"><img src="${SPRITE_DIR}${num}${SPRITE_EXT}" alt="" loading="lazy" onerror="const s=this.parentNode;s.classList.remove('has-img');s.textContent='${ph}'"></span>`;
+}
+const cf = document.getElementById("cf");
+[...new Set(DATA.map(d=>d.conf))].sort().forEach(c=>{ const o=document.createElement("option"); o.value=c; o.textContent=c; cf.appendChild(o); });
+
+const grid = document.getElementById("grid"), q = document.getElementById("q"), count = document.getElementById("count");
+let sortKey = "bst";
+function render(){
+  const term = q.value.trim().toLowerCase(), c = cf.value;
+  const list = DATA.filter(d => (!c || d.conf===c) && (!term || d.team.toLowerCase().includes(term) || d.match.name.toLowerCase().includes(term)));
+  list.sort((a,b)=> sortKey==="az" ? a.team.localeCompare(b.team) : sortKey==="bst" ? b.bst-a.bst : sortKey==="fit" ? b.match.fit-a.match.fit
+    : sortKey==="sos" ? a.sos_rank-b.sos_rank : sortKey==="move" ? (b.raw_dex-b.dex)-(a.raw_dex-a.dex) || a.dex-b.dex : b.stats[sortKey]-a.stats[sortKey]);
+  count.textContent = `${list.length} of ${DATA.length}`;
+  if(!list.length){ grid.innerHTML = `<p class="empty">No team or Pokémon matches “${esc(q.value)}”${c?` in ${esc(c)}`:""}.</p>`; return; }
+  grid.innerHTML = list.map(d=>`
+    <button class="card" style="${vars(d)}" data-team="${esc(d.team)}" aria-label="${esc(d.team)}, matched to ${esc(d.match.name)}">
+      <div class="band">
+        <div class="band-top"><span>${pad(d.dex)}</span><span>${badge(d)}</span></div>
+        <div class="team">${esc(d.team)}</div>
+        <div class="conf">${esc(d.conf)}</div>
+      </div>
+      <div class="body">
+        <div class="match">
+          <span class="lbl">Matched to</span>
+          <span class="pkrow">${slot(d.match.num,"sm")}<span class="pk">${esc(d.match.name)}</span></span>
+          ${types(d.match.types)}
+          <span class="fitline">Fit ${d.match.fit}/100</span>
+        </div>
+        ${radar(d,false)}
+      </div>
+    </button>`).join("");
+}
+document.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed", x===b));
+  sortKey = b.dataset.k; render();
+}));
+q.addEventListener("input", render); cf.addEventListener("change", render);
+render();
+
+function schedLine(d){
+  const tough = d.sos_rank <= 30 ? "one of the toughest schedules in FBS" : d.sos_rank >= 107 ? "one of the softest schedules in FBS" : "a middle-of-the-pack schedule";
+  const m = d.raw_dex - d.dex;
+  const shift = m > 0 ? `climbs from <b>#${d.raw_dex}</b> to <b>#${d.dex}</b> once opponents are accounted for`
+    : m < 0 ? `drops from <b>#${d.raw_dex}</b> to <b>#${d.dex}</b> once opponents are accounted for`
+    : `holds at <b>#${d.dex}</b> once opponents are accounted for`;
+  return `Played ${tough} (#${d.sos_rank} of ${DATA.length}${d.fcs_games ? `, ${d.fcs_games} FCS game${d.fcs_games>1?"s":""}` : ""}) and ${shift}.`;
+}
+const dlg = document.getElementById("dlg"), sheet = document.getElementById("sheet");
+function open(team){
+  const d = DATA.find(x=>x.team===team), m = d.match;
+  const o = [...KEYS].sort((a,b)=>d.stats[b]-d.stats[a]), top = o[0], low = o[5];
+  sheet.setAttribute("style", vars(d));
+  sheet.innerHTML = `
+    <div class="sh-band">
+      <div><span class="meta">${pad(d.dex)} · ${esc(d.conf)} · ${d.games} games · Schedule #${d.sos_rank} of ${DATA.length}</span><h2 id="dlg-title">${esc(d.team)}</h2></div>
+      <button class="close" id="close">Close</button>
+    </div>
+    <div class="sh-body">
+      <div class="matchrow">
+        ${slot(m.num,"lg")}<span class="num">${pad(m.num)}</span><span class="pk">${esc(m.name)}</span>${types(m.types)}
+        <span class="fit">Fit <b>${m.fit}</b>/100</span>
+        <a href="https://bulbapedia.bulbagarden.net/wiki/${encodeURIComponent(m.name.replace(/ /g,"_"))}_(Pok%C3%A9mon)" target="_blank" rel="noopener">Dex entry ↗</a>
+      </div>
+      <p class="blurb">${schedLine(d)}</p>
+      <p class="blurb">Best stat: <b>${NAMES[top][1]} ${d.stats[top]}</b>. Lowest: <b>${NAMES[low][1]} ${d.stats[low]}</b>. Total ${d.bst} vs ${esc(m.name)}'s ${KEYS.reduce((s,k)=>s+m.stats[k],0)}. ${m.choice===1 ? `${esc(m.name)} is this team's closest Pokémon.` : `${esc(m.name)} is this team's ${ord(m.choice)}-closest Pokémon; a closer one went to another team.`}</p>
+      <figure class="chart">
+        ${radar(d,true)}
+        <div class="sides" aria-hidden="true"><span>← Defense</span><span>Offense →</span></div>
+      </figure>
+      <div class="legend"><span><i class="sw-team"></i>${esc(d.team)}</span><span><i class="sw-mon"></i>${esc(m.name)}</span></div>
+      <div class="stats">${KEYS.map(k=>`
+        <div class="srow">
+          <div class="sname">${NAMES[k][0]}<small>${NAMES[k][1]}</small></div>
+          <div class="bars">
+            <div class="bar"><div class="track"><div class="fill t" style="width:${Math.min(100,d.stats[k]/MAX*100)}%"></div></div><span class="val">${d.stats[k]}</span></div>
+            <div class="bar"><div class="track"><div class="fill m" style="width:${Math.min(100,m.stats[k]/MAX*100)}%"></div></div><span class="val">${m.stats[k]}</span></div>
+          </div>
+          <div class="raw">${k!=="hp" ? `Before schedule adjustment <b>${d.raw_stats[k]}</b> · ` : ""}${d.raw[k].map(([l,v])=>`${esc(l)} <b>${esc(v)}</b>`).join(" · ")}</div>
+        </div>`).join("")}
+      </div>
+    </div>`;
+  document.getElementById("close").onclick = ()=>dlg.close();
+  dlg.showModal();
+}
+grid.addEventListener("click", e=>{ const c = e.target.closest(".card"); if(c) open(c.dataset.team); });
+dlg.addEventListener("click", e=>{ if(e.target===dlg) dlg.close(); });
+</script>
