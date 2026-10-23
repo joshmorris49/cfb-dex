@@ -16,8 +16,12 @@ img{max-width:100%}
 
 data = json.load(open("dex_colored.json"))
 for d in data:  # drop fields the page never reads
-    d.pop("srs", None); d["match"].pop("dist", None); d["col"].pop("all", None)
-body = open("template.html").read().replace("__DATA__", json.dumps(data, ensure_ascii=False, separators=(",", ":")))
+    d["match"].pop("dist", None); d["col"].pop("all", None)
+import csv
+week = list(csv.DictReader(open("data/week.csv")))
+body = (open("template.html").read()
+        .replace("__DATA__", json.dumps(data, ensure_ascii=False, separators=(",", ":")))
+        .replace("__WEEK__", json.dumps(week, ensure_ascii=False, separators=(",", ":"))))
 body = re.sub(r'const SPRITE_DIR = "[^"]*";', 'const SPRITE_DIR = "sprites/";', body, count=1)
 body = body.replace('<meta name="claude:viewport-fit-sides" content="cover">\n', "")
 # head-level tags (title, font links, styles) go in <head>; the rest of the template is the body

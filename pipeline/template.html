@@ -117,6 +117,52 @@ dialog::backdrop{background:rgba(8,14,10,.55)}
 .val{font:600 13px var(--f-data);text-align:right;font-variant-numeric:tabular-nums}
 .raw{grid-column:2;font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
 @media (max-width:420px){.srow{grid-template-columns:1fr}.raw{grid-column:1}}
+
+/* ---- tabs ---- */
+.tabs{display:flex;gap:4px;border-bottom:2px solid var(--line)}
+.tab{all:unset;cursor:pointer;font:700 15px var(--f-data);letter-spacing:.08em;text-transform:uppercase;padding:10px 14px;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-2px}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--turf)}
+.tab:focus-visible{outline:2px solid var(--turf);outline-offset:2px}
+.view{display:flex;flex-direction:column;gap:18px}
+/* ---- this week ---- */
+.wk-head{display:flex;flex-direction:column;gap:4px}
+.wk-head h2{font-family:var(--f-display);font-weight:400;font-size:24px;margin:0}
+.wk-head p{margin:0;color:var(--muted);max-width:68ch;font-size:14px}
+.wk-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px}
+@media (max-width:420px){.wk-list{grid-template-columns:1fr}}
+.mu{background:var(--surface);border:1px solid var(--line);border-radius:8px;overflow:hidden;display:flex;flex-direction:column}
+.mu-meta{display:flex;justify-content:space-between;gap:8px;padding:8px 12px;font:600 12px var(--f-data);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.mu-teams{display:grid;grid-template-columns:1fr 1fr;position:relative}
+.mu-side{all:unset;box-sizing:border-box;cursor:pointer;background:var(--c1);color:var(--fg);border-bottom:4px solid var(--c2);padding:10px 12px 9px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.mu-side.home{text-align:right;align-items:flex-end}
+.mu-side:focus-visible{outline:2px solid var(--turf);outline-offset:-2px}
+.mu-side .rk{font:700 11px var(--f-data);letter-spacing:.08em;opacity:.85;font-variant-numeric:tabular-nums}
+.mu-side .nm{font-family:var(--f-display);font-size:17px;line-height:1.1;overflow-wrap:anywhere}
+.mu-side .pkrow{gap:6px}
+.mu-side.home .pkrow{flex-direction:row-reverse}
+.mu-side .pkn{font:700 13px var(--f-data);opacity:.92;overflow-wrap:anywhere}
+.mu-side .slot{background:rgba(255,255,255,.85);border-color:rgba(255,255,255,.5);color:#333}
+.mu-at{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--surface);color:var(--muted);font:700 12px var(--f-data);border:1px solid var(--line)}
+.mu-body{display:grid;grid-template-columns:116px minmax(0,1fr);gap:12px;align-items:center;padding:12px}
+@media (max-width:380px){.mu-body{grid-template-columns:1fr}.mu-body .radar-mu{margin:0 auto}}
+.radar-mu{width:116px;height:116px;display:block}
+.r-a{fill:var(--ta);fill-opacity:.22;stroke:var(--ta);stroke-width:2;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.r-h{fill:var(--th);fill-opacity:.14;stroke:var(--th);stroke-width:2;stroke-dasharray:5 3;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.bts{display:flex;flex-direction:column;gap:7px;min-width:0}
+.bt{display:flex;flex-direction:column;gap:3px}
+.bt-lab{display:flex;justify-content:space-between;gap:8px;font-size:12px;color:var(--muted);line-height:1.25}
+.bt-lab b{color:var(--ink);font-weight:600;white-space:nowrap}
+.bt-bar{position:relative;height:7px;background:var(--track);border-radius:4px}
+.bt-bar::after{content:"";position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:var(--muted);opacity:.5}
+.bt-fill{position:absolute;top:0;bottom:0;border-radius:4px}
+.mu-leg{display:flex;justify-content:space-between;gap:8px;padding:0 12px;font:600 11px var(--f-data);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.mu-leg span{display:inline-flex;align-items:center;gap:5px;min-width:0}
+.mu-leg i{display:inline-block;width:14px;height:0;border-top:2px solid}
+.mu-verdict{margin-top:auto;border-top:1px dashed var(--line);padding:10px 12px 12px;display:flex;flex-direction:column;gap:4px}
+.mu-pick{font:600 16px var(--f-data);letter-spacing:.02em}
+.mu-pick b{font-weight:700}
+.mu-pick .pct{color:var(--muted);font-weight:600}
+.mu-type{font-size:12.5px;color:var(--muted)}
 @media (prefers-reduced-motion:reduce){.card{transition:none}}
 </style>
 
@@ -127,6 +173,12 @@ dialog::backdrop{background:rgba(8,14,10,.55)}
     <p class="lede">Every FBS team scored on six base stats from its 2026 season so far, adjusted for the strength of the opponents it faced, then matched to the Pokémon with the closest stat line out of all 1,025. No two teams share a match. Tap a team to see the breakdown.</p>
   </header>
 
+  <nav class="tabs" role="tablist" aria-label="Views">
+    <button class="tab" role="tab" id="tab-dex" aria-controls="view-dex" aria-selected="true">Dex</button>
+    <button class="tab" role="tab" id="tab-week" aria-controls="view-week" aria-selected="false">This Week</button>
+  </nav>
+
+  <div class="view" id="view-dex" role="tabpanel" aria-labelledby="tab-dex">
   <div class="filters">
     <input id="q" type="search" placeholder="Search a team or Pokémon" aria-label="Search a team or Pokémon">
     <select id="cf" aria-label="Conference"><option value="">All conferences</option></select>
@@ -151,6 +203,21 @@ dialog::backdrop{background:rgba(8,14,10,.55)}
   <p class="howto"><span><i class="sw-team"></i>Filled shape: the team, in its school color</span><span><i class="sw-mon"></i>Dashed outline: its Pokémon</span><span>Program on top, offense on the right, defense on the left, big plays at the bottom</span></p>
 
   <main class="grid" id="grid"></main>
+  </div>
+
+  <div class="view" id="view-week" role="tabpanel" aria-labelledby="tab-week" hidden>
+    <div class="wk-head">
+      <h2 id="wk-title">This Week</h2>
+      <p>Every FBS-vs-FBS game this week. The overlaid shapes compare the two teams' stat lines: the away team is solid, the home team dashed. Each bar shows who has the edge when a team runs or passes against the other's defense, plus big plays and program strength. The pick comes from each team's scoring margin, adjusted for schedule, plus 2.5 points for home field. Tap a team for its full entry.</p>
+    </div>
+    <div class="controls" role="group" aria-label="Sort games">
+      <span class="lbl">Sort</span>
+      <button class="chip wk-sort" id="w-kick" data-k="kick" aria-pressed="true">Kickoff</button>
+      <button class="chip wk-sort" id="w-close" data-k="close" aria-pressed="false">Closest</button>
+      <button class="chip wk-sort" id="w-big" data-k="big" aria-pressed="false">Biggest matchups</button>
+    </div>
+    <div class="wk-list" id="wk-list"></div>
+  </div>
 
   <section class="notes">
     <div>
@@ -322,4 +389,122 @@ function open(team){
 }
 grid.addEventListener("click", e=>{ const c = e.target.closest(".card"); if(c) open(c.dataset.team); });
 dlg.addEventListener("click", e=>{ if(e.target===dlg) dlg.close(); });
+
+/* ===================== This Week ===================== */
+const WEEK = __WEEK__;
+const BY = Object.fromEntries(DATA.map(d=>[d.team,d]));
+const HFA = 2.5, SIGMA = 15;
+const TCHART = {
+  Normal:{Rock:.5,Ghost:0,Steel:.5},
+  Fire:{Fire:.5,Water:.5,Grass:2,Ice:2,Bug:2,Rock:.5,Dragon:.5,Steel:2},
+  Water:{Fire:2,Water:.5,Grass:.5,Ground:2,Rock:2,Dragon:.5},
+  Electric:{Water:2,Electric:.5,Grass:.5,Ground:0,Flying:2,Dragon:.5},
+  Grass:{Fire:.5,Water:2,Grass:.5,Poison:.5,Ground:2,Flying:.5,Bug:.5,Rock:2,Dragon:.5,Steel:.5},
+  Ice:{Fire:.5,Water:.5,Grass:2,Ice:.5,Ground:2,Flying:2,Dragon:2,Steel:.5},
+  Fighting:{Normal:2,Ice:2,Poison:.5,Flying:.5,Psychic:.5,Bug:.5,Rock:2,Ghost:0,Dark:2,Steel:2,Fairy:.5},
+  Poison:{Grass:2,Poison:.5,Ground:.5,Rock:.5,Ghost:.5,Steel:0,Fairy:2},
+  Ground:{Fire:2,Electric:2,Grass:.5,Poison:2,Flying:0,Bug:.5,Rock:2,Steel:2},
+  Flying:{Electric:.5,Grass:2,Fighting:2,Bug:2,Rock:.5,Steel:.5},
+  Psychic:{Fighting:2,Poison:2,Psychic:.5,Dark:0,Steel:.5},
+  Bug:{Fire:.5,Grass:2,Fighting:.5,Poison:.5,Flying:.5,Psychic:2,Ghost:.5,Dark:2,Steel:.5,Fairy:.5},
+  Rock:{Fire:2,Ice:2,Fighting:.5,Ground:.5,Flying:2,Bug:2,Steel:.5},
+  Ghost:{Normal:0,Psychic:2,Ghost:2,Dark:.5},
+  Dragon:{Dragon:2,Steel:.5,Fairy:0},
+  Dark:{Fighting:.5,Psychic:2,Ghost:2,Dark:.5,Fairy:.5},
+  Steel:{Fire:.5,Water:.5,Electric:.5,Ice:2,Rock:2,Steel:.5,Fairy:2},
+  Fairy:{Fire:.5,Fighting:2,Poison:.5,Dragon:2,Dark:2,Steel:.5}
+};
+function bestHit(att, def){
+  let best = {m:-1,t:att[0]};
+  for (const t of att){ const m = def.reduce((p,d)=>p*((TCHART[t]||{})[d] ?? 1),1); if (m > best.m) best = {m,t}; }
+  return best;
+}
+const mult = m => m===0 ? "no effect" : m===.25 ? "¼×" : m===.5 ? "½×" : m===1 ? "1×" : m===2 ? "2×" : m===4 ? "4×" : m+"×";
+const phi = x => { const t = 1/(1+0.2316419*Math.abs(x)); const d = 0.3989423*Math.exp(-x*x/2);
+  const p = d*t*(0.3193815+t*(-0.3565638+t*(1.781478+t*(-1.821256+t*1.330274)))); return x>0 ? 1-p : p; };
+function project(a, h){
+  const margin = (h.srs - a.srs) + HFA;           // positive = home favored
+  return {margin, pHome: phi(margin / SIGMA)};
+}
+function radar2(a, h){
+  const R = 52;
+  const rings = [.5,1].map(f=>`<polygon class="r-grid" points="${ring(R*f)}"/>`).join("");
+  return `<svg class="radar-mu" viewBox="-58 -58 116 116" aria-hidden="true">${rings}<polygon class="r-a" points="${pts(a.stats,R)}"/><polygon class="r-h" points="${pts(h.stats,R)}"/></svg>`;
+}
+function battles(a, h){
+  // edge > 0 favors the home team; z-scores are schedule-adjusted ratings
+  const rows = [
+    [`${a.team} running`, h.z.def - a.z.atk],
+    [`${a.team} passing`, h.z.spd - a.z.spa],
+    [`${h.team} running`, h.z.atk - a.z.def],
+    [`${h.team} passing`, h.z.spa - a.z.spd],
+    [`Big plays`, h.z.spe - a.z.spe],
+    [`Program`, h.z.hp - a.z.hp],
+  ];
+  return rows.map(([lab, e])=>{
+    const w = Math.min(Math.abs(e), 3) / 3 * 50, win = Math.abs(e) < 0.15 ? null : (e > 0 ? h : a);
+    const side = e > 0 ? `left:50%;width:${w}%;background:var(--th)` : `right:50%;width:${w}%;background:var(--ta)`;
+    return `<div class="bt"><div class="bt-lab"><span>${esc(lab)}</span><b>${win ? esc(win.team) : "Even"}</b></div>
+      <div class="bt-bar" role="img" aria-label="${esc(lab)}: ${win ? "edge " + esc(win.team) : "even"}"><span class="bt-fill" style="${side}"></span></div></div>`;
+  }).join("");
+}
+function side(d, home){
+  return `<button class="mu-side${home ? " home" : ""}" style="${vars(d)}" data-team="${esc(d.team)}" aria-label="${esc(d.team)}, ${esc(d.match.name)}">
+    <span class="rk">${pad(d.dex)}</span>
+    <span class="nm">${esc(d.team)}</span>
+    <span class="pkrow">${slot(d.match.num,"sm")}<span class="pkn">${esc(d.match.name)}</span></span>
+  </button>`;
+}
+const wkList = document.getElementById("wk-list");
+let wkSort = "kick";
+const GAMES = WEEK.map((g,i)=>{ const a = BY[g.away], h = BY[g.home]; return {...g, i, a, h, ...project(a,h)}; }).filter(g=>g.a && g.h);
+function renderWeek(){
+  const days = [...new Set(GAMES.map(g=>g.date))].sort();
+  const fmt = iso => new Date(iso + "T12:00:00").toLocaleDateString("en-US",{month:"short",day:"numeric"});
+  document.getElementById("wk-title").textContent = `This Week · ${fmt(days[0])}–${fmt(days[days.length-1])} · ${GAMES.length} games`;
+  const list = [...GAMES].sort((x,y)=> wkSort==="close" ? Math.abs(x.margin)-Math.abs(y.margin)
+    : wkSort==="big" ? (y.a.bst+y.h.bst)-(x.a.bst+x.h.bst) : x.i - y.i);
+  wkList.innerHTML = list.map(g=>{
+    const {a,h} = g, fav = g.margin >= 0 ? h : a, pts = Math.abs(g.margin), p = g.margin >= 0 ? g.pHome : 1-g.pHome;
+    const ah = bestHit(a.match.types, h.match.types), ha = bestHit(h.match.types, a.match.types);
+    const when = [g.day, g.time ? g.time + " ET" : "Time TBA"].join(" · ");
+    return `<article class="mu" style="--ta:${a.col.tc};--th:${h.col.tc}">
+      <div class="mu-meta"><span>${esc(when)}</span><span>${esc(g.tv||"")}</span></div>
+      <div class="mu-teams">${side(a,false)}${side(h,true)}<span class="mu-at" aria-hidden="true">at</span></div>
+      <div class="mu-body">${radar2(a,h)}<div class="bts">${battles(a,h)}</div></div>
+      <div class="mu-leg"><span><i style="border-color:var(--ta)"></i>${esc(a.team)}</span><span><i style="border-color:var(--th);border-top-style:dashed"></i>${esc(h.team)}</span></div>
+      <div class="mu-verdict">
+        <div class="mu-pick">Dex pick: <b>${esc(fav.team)}</b> by ${pts < 0.5 ? "a hair" : pts.toFixed(1)} <span class="pct">· ${Math.round(p*100)}% to win</span></div>
+        <div class="mu-type">Type matchup: ${esc(a.match.name)}'s ${ah.t} moves hit ${esc(h.match.name)} for ${mult(ah.m)}; ${esc(h.match.name)}'s ${ha.t} moves hit back for ${mult(ha.m)}.</div>
+      </div>
+    </article>`;
+  }).join("");
+}
+wkList.addEventListener("click", e=>{ const s = e.target.closest(".mu-side"); if (s) open(s.dataset.team); });
+document.querySelectorAll(".wk-sort").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll(".wk-sort").forEach(x=>x.setAttribute("aria-pressed", x===b));
+  wkSort = b.dataset.k; renderWeek();
+}));
+
+/* tabs */
+const TABS = {dex:["tab-dex","view-dex"], week:["tab-week","view-week"]};
+let weekDrawn = false;
+function showTab(name, push){
+  for (const [k,[t,v]] of Object.entries(TABS)){
+    const on = k === name;
+    document.getElementById(t).setAttribute("aria-selected", on);
+    document.getElementById(v).hidden = !on;
+  }
+  if (name === "week" && !weekDrawn){ renderWeek(); weekDrawn = true; }
+  if (push) try { history.replaceState(null, "", name === "week" ? "#week" : location.pathname + location.search); } catch(e){}
+}
+document.getElementById("tab-dex").addEventListener("click", ()=>showTab("dex", true));
+document.getElementById("tab-week").addEventListener("click", ()=>showTab("week", true));
+document.querySelector(".tabs").addEventListener("keydown", e=>{
+  if (e.key!=="ArrowRight" && e.key!=="ArrowLeft") return;
+  const next = document.getElementById("tab-dex").getAttribute("aria-selected")==="true" ? "week" : "dex";
+  showTab(next, true); document.getElementById(TABS[next][0]).focus();
+});
+showTab(location.hash === "#week" ? "week" : "dex", false);
+window.addEventListener("hashchange", ()=>showTab(location.hash === "#week" ? "week" : "dex", false));
 </script>
