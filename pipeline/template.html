@@ -1,6 +1,7 @@
 <title>Gridiron Dex</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Graduate&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700&display=swap">
 <style>
 /* Layout: a chalked stat-sheet field guide. Filters on top, school-color dex cards in a grid, a bottom sheet per entry.
@@ -178,7 +179,7 @@ dialog::backdrop{background:rgba(8,14,10,.55)}
         <li>Return and coverage averages are pulled toward the FBS average, so a team with only a few returns isn't judged on one long run back.</li>
         <li>Army was outside 247's top 150 recruiting classes for 2026, so its class score is estimated just below #150.</li>
         <li>North Dakota State and Sacramento State are new to FBS this season.</li>
-        <li>Each card has an empty image slot labeled with its Pokémon's dex number. On your own saved copy, put images in a <b>sprites</b> folder next to the page, named by dex number (sprites/493.png), and set <b>SPRITE_DIR</b> to "sprites/" at the top of the page's script.</li>
+        <li>Pokémon sprites and names belong to Nintendo, Creatures and GAME FREAK. This is an unofficial fan project.</li>
       </ul>
       <p style="margin-top:10px">Stats and schedules: <a href="https://cfbstats.com/2026/conference/index.html">cfbstats.com</a> (all games through Oct. 20). Roster talent: <a href="https://247sports.com/season/2026-football/collegeteamtalentrating/">247Sports Team Talent Composite</a>. Recruiting: <a href="https://247sports.com/Season/2026-Football/CompositeTeamRankings/">247Sports</a>. Preseason poll: <a href="https://fbschedules.com/ap-top-25-poll-released-ahead-of-2026-college-football-season/">AP via FBSchedules</a>. SP+ comparison: <a href="https://cfbupdate.com/sp-ratings">CFB Update</a>. Base stats: <a href="https://pokemondb.net/pokedex/all">PokémonDB</a>. School colors: <a href="https://teamcolorcodes.com/ncaa-color-codes/sec-team-color-codes/">Team Color Codes</a>.</p>
     </div>
@@ -228,17 +229,14 @@ function badge(d){
   if (sortKey === "move") return `${move(d)} from #${d.raw_dex}`;
   return "Total " + d.bst;
 }
-/* Sprite slots
-   Each card has an empty image slot keyed to its Pokémon's national dex number.
-   To fill them on your own copy: save this page, put your images in a folder next to it
-   named by dex number (sprites/1.png ... sprites/1025.png), and set SPRITE_DIR below to "sprites/".
-   Left empty, the page loads no images and shows the dex number in each slot. */
+/* Sprites live in sprites/, named by national dex number (sprites/493.png).
+   If an image is missing, its slot shows the dex number instead. */
 const SPRITE_DIR = "";
 const SPRITE_EXT = ".png";
 function slot(num, size){
   const ph = `#${num}`;
   if (!SPRITE_DIR) return `<span class="slot slot-${size}" data-dex="${num}" aria-hidden="true">${ph}</span>`;
-  return `<span class="slot slot-${size} has-img" data-dex="${num}" aria-hidden="true"><img src="${SPRITE_DIR}${num}${SPRITE_EXT}" alt="" loading="lazy" onerror="const s=this.parentNode;s.classList.remove('has-img');s.textContent='${ph}'"></span>`;
+  return `<span class="slot slot-${size} has-img" data-dex="${num}" aria-hidden="true"><img src="${SPRITE_DIR}${num}${SPRITE_EXT}" alt="" width="${size==="lg"?88:44}" height="${size==="lg"?88:44}" loading="lazy" decoding="async" onerror="const s=this.parentNode;s.classList.remove('has-img');s.textContent='${ph}'"></span>`;
 }
 const cf = document.getElementById("cf");
 [...new Set(DATA.map(d=>d.conf))].sort().forEach(c=>{ const o=document.createElement("option"); o.value=c; o.textContent=c; cf.appendChild(o); });

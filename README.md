@@ -23,7 +23,7 @@ Every FBS team's 2026 season, turned into six Pokémon-style base stats and matc
 
 ## Sprites
 
-The page has an image slot for each team's Pokémon, but this repo ships without images. Add your own to `sprites/` named by national dex number (`sprites/493.png`). See [`sprites/README.md`](sprites/README.md).
+Sprites live in `sprites/`, named by national dex number (`sprites/493.png`). If one is missing, its slot shows the dex number instead. Pokémon sprites and names belong to Nintendo, Creatures and GAME FREAK; this is an unofficial fan project.
 
 ## Rebuilding
 
