@@ -150,6 +150,7 @@ for i, j in zip(rows, cols):
     out.append({
         "team": t["team"], "conf": t["conf"], "games": int(t["g"]),
         "stats": b, "bst": sum(b.values()),
+        "z": {k: round(float(zs(comp[k])[i]), 2) for k in KEYS},
         "raw_stats": {k: int(base_raw[k][i]) for k in KEYS}, "raw_bst": int(sum(base_raw[k][i] for k in KEYS)),
         "sos_rank": int(sos_rank[i]), "fcs_games": sum(1 for x in opps[i] if x < 0), "srs": round(float(srs[i]), 1),
         "match": {"num": int(m["num"]), "name": m["name"], "types": [x for x in (m["type1"], m["type2"]) if x],
