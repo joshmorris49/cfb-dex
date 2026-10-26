@@ -1,139 +1,139 @@
 Name,G,Gain,Lost,Margin
-New Mexico,6,21,4,17
-Notre Dame,7,16,2,14
-UCLA,6,19,9,10
-Kentucky,7,16,5,11
-Tulsa,7,15,4,11
-Colorado State,6,12,4,8
-Northwestern,6,9,2,7
-North Dakota State,7,14,6,8
-Fresno State,7,12,4,8
-Massachusetts,7,13,6,7
-James Madison,7,12,5,7
-South Alabama,7,11,4,7
+Army,7,5,2,3
+Air Force,7,7,7,0
+West Virginia,8,10,8,2
+Texas State,7,5,10,-5
+Navy,7,4,10,-6
+Rice,8,5,11,-6
+Memphis,8,16,12,4
+James Madison,8,12,6,6
+Houston,8,12,6,6
+Tennessee,8,14,11,3
 Louisville,7,12,6,6
-Nebraska,7,10,4,6
-Louisiana Tech,6,13,8,5
-Miami (FL),6,8,3,5
-Cincinnati,6,7,2,5
-Alabama,7,16,11,5
-Houston,7,10,5,5
-Middle Tennessee State,7,9,4,5
-Missouri,7,9,4,5
-Oregon State,7,9,4,5
-Virginia,7,8,3,5
-UCF,6,11,7,4
-Appalachian State,6,11,7,4
-Utah,6,10,6,4
-Louisiana,7,14,10,4
-Coastal Carolina,7,14,10,4
-Penn State,7,11,7,4
-Pittsburgh,7,11,7,4
-Purdue,7,10,6,4
-Western Michigan,7,7,3,4
-UTSA,7,7,3,4
-Texas Tech,6,12,9,3
-Iowa State,6,8,5,3
-Liberty,6,8,5,3
-BYU,6,8,5,3
-Air Force,6,7,4,3
-Boise State,6,6,3,3
-Tennessee,7,13,10,3
-Georgia,7,11,8,3
-Arkansas State,7,11,8,3
-Maryland,7,10,7,3
-Miami (OH),7,8,5,3
-USF,7,7,4,3
-Indiana,7,6,3,3
-Auburn,6,11,9,2
-North Texas,6,9,7,2
-Kennesaw State,6,8,6,2
-Florida Atlantic,6,8,6,2
-Tulane,6,7,5,2
-Duke,6,5,3,2
-Iowa,6,5,3,2
-Army,6,4,2,2
-Memphis,7,13,11,2
-Delaware,7,11,9,2
-Washington,7,11,9,2
-Ohio State,7,10,8,2
-California,7,10,8,2
-Georgia Southern,7,9,7,2
-Florida,7,9,7,2
-Baylor,6,11,10,1
-Boston College,6,11,10,1
-Minnesota,6,8,7,1
-Texas A&M,7,9,8,1
-Arkansas,7,9,8,1
-Sam Houston State,7,9,8,1
-Wake Forest,7,4,3,1
-Central Michigan,7,11,11,0
-Oregon,6,11,11,0
-UAB,7,10,10,0
-UNLV,7,9,9,0
-Toledo,7,8,8,0
-San Jose State,7,8,8,0
-Troy,6,7,7,0
-Connecticut,6,7,7,0
-West Virginia,7,7,7,0
+South Alabama,7,11,4,7
+Ohio,8,6,10,-4
+Kansas State,7,4,6,-2
 Temple,7,6,6,0
-USC,7,6,6,0
-Stanford,7,6,6,0
-Wisconsin,6,6,6,0
-Eastern Michigan,8,9,10,-1
-Bowling Green,7,7,8,-1
-TCU,6,8,9,-1
-NC State,6,8,9,-1
-Ole Miss,6,7,8,-1
-Northern Illinois,6,6,7,-1
-Illinois,6,3,4,-1
-LSU,7,9,11,-2
-UTEP,7,8,10,-2
-FIU,7,8,10,-2
-San Diego State,7,8,10,-2
-Missouri State,7,7,9,-2
-Hawaii,7,6,8,-2
-Ball State,7,5,7,-2
-Syracuse,6,8,10,-2
-North Carolina,6,8,10,-2
-East Carolina,6,8,10,-2
-Kansas State,6,4,6,-2
-Old Dominion,7,12,15,-3
-Western Kentucky,7,6,9,-3
-Ohio,7,5,8,-3
-Michigan,6,8,11,-3
-Southern Miss,6,7,10,-3
-Kansas,6,6,9,-3
-SMU,6,6,9,-3
-Arizona,6,5,8,-3
-Mississippi State,6,5,8,-3
-Texas,6,5,8,-3
-South Carolina,6,5,8,-3
-Buffalo,7,7,11,-4
+Boise State,7,7,3,4
+Indiana,8,8,4,4
+Louisiana,8,15,11,4
+South Carolina,7,6,9,-3
+Cincinnati,7,10,4,6
+UCLA,7,22,11,11
+Georgia,7,11,8,3
+LSU,8,9,11,-2
+Nebraska,7,10,4,6
+Florida,7,9,7,2
+Miami (FL),7,9,3,6
+Liberty,7,10,5,5
+Utah,7,11,8,3
+Wyoming,8,7,11,-4
+Toledo,8,11,10,1
+Central Michigan,8,13,11,2
+New Mexico,7,23,5,18
+Notre Dame,7,16,2,14
 Florida State,7,6,10,-4
-Jacksonville State,7,6,10,-4
-Clemson,6,7,11,-4
-Oklahoma State,6,7,11,-4
-Georgia State,6,6,10,-4
-Arizona State,6,6,10,-4
-Louisiana-Monroe,6,4,8,-4
-Georgia Tech,6,3,7,-4
-New Mexico State,7,8,13,-5
-Vanderbilt,7,7,12,-5
-Virginia Tech,7,6,11,-5
-Kent State,7,6,11,-5
-Michigan State,7,3,8,-5
-Rutgers,6,6,11,-5
-Texas State,6,5,10,-5
-Akron,7,7,13,-6
-Rice,7,4,10,-6
-Utah State,6,7,13,-6
-Colorado,6,7,13,-6
-Navy,6,3,9,-6
-Washington State,7,5,12,-7
-Wyoming,7,4,11,-7
+Duke,7,7,4,3
+UTSA,8,13,6,7
+Kansas,7,7,11,-4
+BYU,7,8,6,2
+Georgia State,7,6,12,-6
+Troy,7,8,9,-1
+North Dakota State,8,15,8,7
+UNLV,7,9,9,0
+UAB,7,10,10,0
+Iowa,7,6,7,-1
+Kentucky,8,18,5,13
+Pittsburgh,8,11,8,3
+Nevada,7,3,12,-9
+Connecticut,7,7,7,0
+Texas Tech,7,14,12,2
+Buffalo,8,9,12,-3
+Western Michigan,8,9,6,3
+Northwestern,7,12,3,9
+Alabama,8,19,12,7
+Oklahoma State,7,10,11,-1
+Missouri,7,9,4,5
+Texas A&M,8,10,11,-1
+North Texas,7,10,8,2
+Massachusetts,8,13,6,7
+Tulsa,8,15,5,10
 Marshall,7,6,14,-8
-Oklahoma,6,6,14,-8
-Nevada,6,3,11,-8
-Sacramento State,7,3,13,-10
+Virginia,8,9,5,4
+Auburn,7,11,9,2
+Iowa State,7,8,6,2
+Wake Forest,7,4,3,1
+Ohio State,7,10,8,2
+USC,8,6,8,-2
+New Mexico State,7,8,13,-5
+Mississippi State,7,6,10,-4
+Jacksonville State,7,6,10,-4
+Virginia Tech,8,6,11,-5
+Coastal Carolina,7,14,10,4
+Colorado State,7,14,6,8
+NC State,7,8,9,-1
+San Diego State,8,10,12,-2
+Oregon State,7,9,4,5
+USF,7,7,4,3
+Miami (OH),8,8,7,1
+Middle Tennessee State,7,9,4,5
+UCF,7,12,7,5
+Fresno State,7,12,4,8
+San Jose State,8,9,8,1
+Syracuse,7,8,10,-2
+Western Kentucky,7,6,9,-3
+Ball State,8,6,9,-3
+UTEP,7,8,10,-2
+East Carolina,7,9,13,-4
+Maryland,7,10,7,3
+Arkansas State,8,13,8,5
+Akron,8,8,15,-7
+Appalachian State,7,12,7,5
+Ole Miss,7,10,11,-1
+Clemson,7,7,11,-4
+Louisiana Tech,7,14,8,6
+Penn State,7,11,7,4
+Tulane,7,10,11,-1
+Wisconsin,7,8,6,2
+Washington State,8,5,13,-8
+Illinois,7,4,5,-1
+Baylor,7,13,11,2
+Arizona,7,6,8,-2
+Purdue,7,10,6,4
+Missouri State,7,7,9,-2
+FIU,7,8,10,-2
+Michigan,7,9,13,-4
+Boston College,7,13,10,3
+Kennesaw State,7,8,8,0
+Arizona State,7,6,10,-4
+Georgia Southern,7,9,7,2
+SMU,7,6,9,-3
+Colorado,7,7,16,-9
+Eastern Michigan,9,11,11,0
+Oregon,7,12,12,0
+Vanderbilt,8,7,14,-7
+Michigan State,8,5,11,-6
+Rutgers,7,7,14,-7
+Texas,7,8,11,-3
+Southern Miss,7,8,11,-3
+Old Dominion,8,12,16,-4
+Delaware,7,11,9,2
+Arkansas,7,9,8,1
 Charlotte,7,4,16,-12
+Georgia Tech,7,3,9,-6
+Sacramento State,8,5,14,-9
+Bowling Green,8,8,10,-2
+Washington,7,11,9,2
+Stanford,8,6,6,0
+Louisiana-Monroe,7,6,9,-3
+Utah State,7,7,13,-6
+Kent State,8,8,12,-4
+North Carolina,7,8,10,-2
+Florida Atlantic,7,9,7,2
+TCU,7,9,12,-3
+California,8,10,8,2
+Minnesota,7,12,8,4
+Northern Illinois,7,7,12,-5
+Sam Houston State,7,9,8,1
+Oklahoma,7,8,15,-7
+Hawaii,8,11,9,2
