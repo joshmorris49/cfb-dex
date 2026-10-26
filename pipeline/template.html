@@ -25,6 +25,8 @@ body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:1
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px}
 .wrap{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
 header{display:flex;flex-direction:column;gap:6px;padding-bottom:14px;border-bottom:2px dashed var(--line)}
+.g1note{margin:0;padding:10px 12px;border:1px dashed var(--line);border-radius:8px;background:var(--surface);color:var(--muted);font-size:14px;max-width:80ch}
+.g1note b{color:var(--ink)}
 .eyebrow{font-family:var(--f-data);font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:12px;color:var(--turf)}
 h1{font-family:var(--f-display);font-weight:400;font-size:clamp(30px,6vw,46px);line-height:1.05;margin:0;text-wrap:balance}
 .lede{margin:0;color:var(--muted);max-width:64ch}
@@ -168,17 +170,19 @@ dialog::backdrop{background:rgba(8,14,10,.55)}
 
 <div class="wrap">
   <header>
-    <span class="eyebrow">FBS · 2026 season through Oct. 20 · 138 teams · national dex #1–1025</span>
+    <span class="eyebrow">FBS · 2026 season through __THROUGH__ · 138 teams · <span id="dexrange">national dex #1–1025</span></span>
     <h1>Gridiron Dex</h1>
-    <p class="lede">Every FBS team scored on six base stats from its 2026 season so far, adjusted for the strength of the opponents it faced, then matched to the Pokémon with the closest stat line out of all 1,025. No two teams share a match. Tap a team to see the breakdown.</p>
+    <p class="lede">Every FBS team scored on six base stats from its 2026 season so far, adjusted for the strength of the opponents it faced, then matched to the Pokémon with the closest stat line <span id="dexpool">out of all 1,025</span>. No two teams share a match. Tap a team to see the breakdown.</p>
   </header>
 
   <nav class="tabs" role="tablist" aria-label="Views">
     <button class="tab" role="tab" id="tab-dex" aria-controls="view-dex" aria-selected="true">Dex</button>
+    <button class="tab" role="tab" id="tab-gen1" aria-controls="view-dex" aria-selected="false">Gen 1</button>
     <button class="tab" role="tab" id="tab-week" aria-controls="view-week" aria-selected="false">This Week</button>
   </nav>
 
   <div class="view" id="view-dex" role="tabpanel" aria-labelledby="tab-dex">
+  <p class="g1note" id="g1note" hidden><b>Kanto edition.</b> The same team ratings, placed on the original 151's stat spread and matched one-to-one within #1–151 only. Fits run lower with a smaller pool to choose from. Left on the bench: __G1_UNUSED__.</p>
   <div class="filters">
     <input id="q" type="search" placeholder="Search a team or Pokémon" aria-label="Search a team or Pokémon">
     <select id="cf" aria-label="Conference"><option value="">All conferences</option></select>
@@ -248,7 +252,7 @@ dialog::backdrop{background:rgba(8,14,10,.55)}
         <li>North Dakota State and Sacramento State are new to FBS this season.</li>
         <li>Pokémon sprites and names belong to Nintendo, Creatures and GAME FREAK. This is an unofficial fan project.</li>
       </ul>
-      <p style="margin-top:10px">Stats and schedules: <a href="https://cfbstats.com/2026/conference/index.html">cfbstats.com</a> (all games through Oct. 20). Roster talent: <a href="https://247sports.com/season/2026-football/collegeteamtalentrating/">247Sports Team Talent Composite</a>. Recruiting: <a href="https://247sports.com/Season/2026-Football/CompositeTeamRankings/">247Sports</a>. Preseason poll: <a href="https://fbschedules.com/ap-top-25-poll-released-ahead-of-2026-college-football-season/">AP via FBSchedules</a>. SP+ comparison: <a href="https://cfbupdate.com/sp-ratings">CFB Update</a>. Base stats: <a href="https://pokemondb.net/pokedex/all">PokémonDB</a>. School colors: <a href="https://teamcolorcodes.com/ncaa-color-codes/sec-team-color-codes/">Team Color Codes</a>.</p>
+      <p style="margin-top:10px">Stats and schedules: <a href="https://cfbstats.com/2026/conference/index.html">cfbstats.com</a> (all games through __THROUGH__). Roster talent: <a href="https://247sports.com/season/2026-football/collegeteamtalentrating/">247Sports Team Talent Composite</a>. Recruiting: <a href="https://247sports.com/Season/2026-Football/CompositeTeamRankings/">247Sports</a>. Preseason poll: <a href="https://fbschedules.com/ap-top-25-poll-released-ahead-of-2026-college-football-season/">AP via FBSchedules</a>. SP+ comparison: <a href="https://cfbupdate.com/sp-ratings">CFB Update</a>. Base stats: <a href="https://pokemondb.net/pokedex/all">PokémonDB</a>. School colors: <a href="https://teamcolorcodes.com/ncaa-color-codes/sec-team-color-codes/">Team Color Codes</a>.</p>
     </div>
   </section>
 </div>
@@ -256,7 +260,9 @@ dialog::backdrop{background:rgba(8,14,10,.55)}
 <dialog id="dlg" aria-labelledby="dlg-title"><div class="sheet" id="sheet"></div></dialog>
 
 <script>
-const DATA = __DATA__;
+const DATA_NAT = __DATA__;
+const DATA_G1 = DATA_NAT.map(d=>({...d, ...d.g1}));
+let DATA = DATA_NAT;  // the set the Dex grid and team sheets read; swapped by the Gen 1 tab
 const TYPE = {Normal:"#75755b",Fire:"#bd5523",Water:"#3772d2",Electric:"#8b710b",Grass:"#47802c",Ice:"#347f7f",Fighting:"#a8322b",
   Poison:"#8c3f8c",Ground:"#906e28",Flying:"#6f67bf",Psychic:"#ce3b64",Bug:"#6c7926",Rock:"#84722d",Ghost:"#5e4c87",
   Dragon:"#5d36d6",Dark:"#4f4440",Steel:"#71718b",Fairy:"#b54f85"};
@@ -340,7 +346,6 @@ document.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{
   sortKey = b.dataset.k; render();
 }));
 q.addEventListener("input", render); cf.addEventListener("change", render);
-render();
 
 function schedLine(d){
   const tough = d.sos_rank <= 30 ? "one of the toughest schedules in FBS" : d.sos_rank >= 107 ? "one of the softest schedules in FBS" : "a middle-of-the-pack schedule";
@@ -392,7 +397,7 @@ dlg.addEventListener("click", e=>{ if(e.target===dlg) dlg.close(); });
 
 /* ===================== This Week ===================== */
 const WEEK = __WEEK__;
-const BY = Object.fromEntries(DATA.map(d=>[d.team,d]));
+const BY = Object.fromEntries(DATA_NAT.map(d=>[d.team,d]));
 const HFA = 2.5, SIGMA = 15;
 const TCHART = {
   Normal:{Rock:.5,Ghost:0,Steel:.5},
@@ -486,25 +491,32 @@ document.querySelectorAll(".wk-sort").forEach(b=>b.addEventListener("click",()=>
   wkSort = b.dataset.k; renderWeek();
 }));
 
-/* tabs */
-const TABS = {dex:["tab-dex","view-dex"], week:["tab-week","view-week"]};
-let weekDrawn = false;
+/* tabs: Dex and Gen 1 share one grid with different data; This Week always uses the full dex */
+const TABS = ["dex","gen1","week"];
+let weekDrawn = false, curSet = null;
 function showTab(name, push){
-  for (const [k,[t,v]] of Object.entries(TABS)){
-    const on = k === name;
-    document.getElementById(t).setAttribute("aria-selected", on);
-    document.getElementById(v).hidden = !on;
-  }
+  if (!TABS.includes(name)) name = "dex";
+  for (const k of TABS) document.getElementById("tab-"+k).setAttribute("aria-selected", k === name);
+  document.getElementById("view-dex").hidden = name === "week";
+  document.getElementById("view-week").hidden = name !== "week";
+  document.getElementById("view-dex").setAttribute("aria-labelledby", "tab-" + (name === "gen1" ? "gen1" : "dex"));
+  const set = name === "gen1" ? "gen1" : "nat";
+  DATA = set === "gen1" ? DATA_G1 : DATA_NAT;
+  document.getElementById("g1note").hidden = set !== "gen1";
+  document.getElementById("dexrange").textContent = set === "gen1" ? "Gen 1 dex #1–151" : "national dex #1–1025";
+  document.getElementById("dexpool").textContent = set === "gen1" ? "among the original 151" : "out of all 1,025";
+  if (name !== "week" && set !== curSet){ curSet = set; render(); }
   if (name === "week" && !weekDrawn){ renderWeek(); weekDrawn = true; }
-  if (push) try { history.replaceState(null, "", name === "week" ? "#week" : location.pathname + location.search); } catch(e){}
+  if (push) try { history.replaceState(null, "", name === "dex" ? location.pathname + location.search : "#" + name); } catch(e){}
 }
-document.getElementById("tab-dex").addEventListener("click", ()=>showTab("dex", true));
-document.getElementById("tab-week").addEventListener("click", ()=>showTab("week", true));
+for (const k of TABS) document.getElementById("tab-"+k).addEventListener("click", ()=>showTab(k, true));
 document.querySelector(".tabs").addEventListener("keydown", e=>{
   if (e.key!=="ArrowRight" && e.key!=="ArrowLeft") return;
-  const next = document.getElementById("tab-dex").getAttribute("aria-selected")==="true" ? "week" : "dex";
-  showTab(next, true); document.getElementById(TABS[next][0]).focus();
+  const cur = TABS.findIndex(k=>document.getElementById("tab-"+k).getAttribute("aria-selected")==="true");
+  const next = TABS[(cur + (e.key==="ArrowRight" ? 1 : TABS.length-1)) % TABS.length];
+  showTab(next, true); document.getElementById("tab-"+next).focus();
 });
-showTab(location.hash === "#week" ? "week" : "dex", false);
-window.addEventListener("hashchange", ()=>showTab(location.hash === "#week" ? "week" : "dex", false));
+const fromHash = () => location.hash.slice(1) || "dex";
+showTab(fromHash(), false);
+window.addEventListener("hashchange", ()=>showTab(fromHash(), false));
 </script>

@@ -130,32 +130,50 @@ comp_raw = {"hp": hp, "atk": raw["atk"], "def": raw["def"], "spa": raw["spa"], "
 KEYS = ["hp", "atk", "def", "spa", "spd", "spe"]
 
 mons = list(csv.DictReader(open("national.csv")))
-M = np.array([[float(m[k]) for k in KEYS] for m in mons])
-def to_base(c):
-    out = {}
-    for i, k in enumerate(KEYS):
-        s = zs(c[k]); p = np.clip(norm.cdf(s), 0.01, 0.99)
-        out[k] = np.round(np.quantile(M[:, i], p)).astype(int)
-    return out
-base, base_raw = to_base(comp), to_base(comp_raw)
 
-T = np.array([[base[k][i] for k in KEYS] for i in range(len(teams))], float)
-cost = np.sqrt(((T[:, None, :] - M[None, :, :]) ** 2).sum(-1))
-rows, cols = linear_sum_assignment(cost)
+def match_pool(pool):
+    """Scale every team onto this pool's stat spread, then find the best one-to-one pairing."""
+    M = np.array([[float(m[k]) for k in KEYS] for m in pool])
+    def to_base(c):
+        out = {}
+        for i, k in enumerate(KEYS):
+            s = zs(c[k]); p = np.clip(norm.cdf(s), 0.01, 0.99)
+            out[k] = np.round(np.quantile(M[:, i], p)).astype(int)
+        return out
+    base, base_raw = to_base(comp), to_base(comp_raw)
+    T = np.array([[base[k][i] for k in KEYS] for i in range(len(teams))], float)
+    cost = np.sqrt(((T[:, None, :] - M[None, :, :]) ** 2).sum(-1))
+    rows, cols = linear_sum_assignment(cost)
+    res = {}
+    for i, j in zip(rows, cols):
+        m = pool[j]; b = {k: int(base[k][i]) for k in KEYS}
+        res[i] = {
+            "stats": b, "bst": sum(b.values()),
+            "raw_stats": {k: int(base_raw[k][i]) for k in KEYS}, "raw_bst": int(sum(base_raw[k][i] for k in KEYS)),
+            "match": {"num": int(m["num"]), "name": m["name"], "types": [x for x in (m["type1"], m["type2"]) if x],
+                      "stats": {k: int(m[k]) for k in KEYS}, "dist": round(float(cost[i, j]), 1),
+                      "fit": int(round(max(0, 100 - cost[i, j] / 2.0))), "choice": int((cost[i] < cost[i, j]).sum()) + 1},
+        }
+    for key, field in (("bst", "dex"), ("raw_bst", "raw_dex")):
+        for n, i in enumerate(sorted(res, key=lambda i: -res[i][key]), 1): res[i][field] = n
+    used = {r["match"]["num"] for r in res.values()}
+    unused = [m["name"] for m in pool if int(m["num"]) not in used]
+    return res, unused
+
+nat, _ = match_pool(mons)
+g1, g1_unused = match_pool([m for m in mons if int(m["num"]) <= 151])
 
 out = []
-for i, j in zip(rows, cols):
-    t, m = teams[i], mons[j]
-    b = {k: int(base[k][i]) for k in KEYS}
+for i, t in enumerate(teams):
+    r = nat[i]
     out.append({
         "team": t["team"], "conf": t["conf"], "games": int(t["g"]),
-        "stats": b, "bst": sum(b.values()),
+        "stats": r["stats"], "bst": r["bst"],
         "z": {k: round(float(zs(comp[k])[i]), 2) for k in KEYS},
-        "raw_stats": {k: int(base_raw[k][i]) for k in KEYS}, "raw_bst": int(sum(base_raw[k][i] for k in KEYS)),
+        "raw_stats": r["raw_stats"], "raw_bst": r["raw_bst"],
         "sos_rank": int(sos_rank[i]), "fcs_games": sum(1 for x in opps[i] if x < 0), "srs": round(float(srs[i]), 1),
-        "match": {"num": int(m["num"]), "name": m["name"], "types": [x for x in (m["type1"], m["type2"]) if x],
-                  "stats": {k: int(m[k]) for k in KEYS}, "dist": round(float(cost[i, j]), 1),
-                  "fit": int(round(max(0, 100 - cost[i, j] / 2.0))), "choice": int((cost[i] < cost[i, j]).sum()) + 1},
+        "match": r["match"], "dex": r["dex"], "raw_dex": r["raw_dex"],
+        "g1": {k: g1[i][k] for k in ("stats", "bst", "raw_stats", "raw_bst", "match", "dex", "raw_dex")},
         "raw": {
             "hp": [["Roster talent (247)", f'{t["talent"]:.0f}'],
                    ["2026 class (247 pts)", f'{t["recruit"]:.1f}' + (" (est.)" if t["recruit_est"] else "")],
@@ -170,10 +188,9 @@ for i, j in zip(rows, cols):
                     ["Punt avg", round(t["punt_avg"], 1)], ["FG %", round(t["fg_pct"], 1)]],
         },
     })
-out.sort(key=lambda x: -x["bst"])
-for n, o in enumerate(out, 1): o["dex"] = n
-for n, o in enumerate(sorted(out, key=lambda x: -x["raw_bst"]), 1): o["raw_dex"] = n
+out.sort(key=lambda x: x["dex"])
 json.dump(out, open("dex_2026.json", "w"), ensure_ascii=False)
+json.dump({"g1_unused": g1_unused}, open("dex_meta.json", "w"))
 
 fits = [o["match"]["fit"] for o in out]
 print("teams", len(out), "unique", len({o["match"]["num"] for o in out}), "fit mean", round(np.mean(fits), 1),
@@ -182,3 +199,8 @@ for o in out[:25]:
     print(f'{o["dex"]:>3} {o["team"]:<18} {o["conf"]:<12} raw#{o["raw_dex"]:<4} SOS#{o["sos_rank"]:<4} {list(o["stats"].values())} {o["bst"]} -> {o["match"]["name"]} fit {o["match"]["fit"]}')
 for o in out[-4:]:
     print(f'{o["dex"]:>3} {o["team"]:<18} -> {o["match"]["name"]}')
+g1f = [o["g1"]["match"]["fit"] for o in out]
+print("gen1: unique", len({o["g1"]["match"]["num"] for o in out}), "fit mean", round(np.mean(g1f), 1),
+      "first-choice", sum(o["g1"]["match"]["choice"] == 1 for o in out), "unused", g1_unused)
+for o in sorted(out, key=lambda x: x["g1"]["dex"])[:12]:
+    print(f'  g1 {o["g1"]["dex"]:>3} {o["team"]:<18} {list(o["g1"]["stats"].values())} {o["g1"]["bst"]} -> {o["g1"]["match"]["name"]} fit {o["g1"]["match"]["fit"]}')

@@ -1,0 +1,40 @@
+<!doctype html>
+<!-- Source for ../og.png, the 1200x630 link-preview image. Render with: python3 og.py -->
+<html><head><meta charset="utf-8"><style>
+*{box-sizing:border-box;margin:0}
+body{width:1200px;height:630px;overflow:hidden;background:#1f5a36;font-family:"TeX Gyre Heros Cn","Liberation Sans Narrow",sans-serif;color:#f7f8f4;position:relative}
+.field{position:absolute;inset:0;background:
+  repeating-linear-gradient(90deg,transparent 0 118px,rgba(247,248,244,.13) 118px 121px),
+  linear-gradient(180deg,#22633c,#1b4f30)}
+.hash{position:absolute;left:0;right:0;height:14px;background:repeating-linear-gradient(90deg,transparent 0 21px,rgba(247,248,244,.16) 21px 23px)}
+.copy{position:absolute;left:72px;top:78px;width:600px}
+.eyebrow{font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:24px;color:#cfe6d4}
+h1{font-weight:700;text-transform:uppercase;font-size:118px;line-height:.92;letter-spacing:.01em;margin-top:18px;text-shadow:0 3px 0 rgba(0,0,0,.18)}
+p{font-family:"Inter",sans-serif;font-size:27px;line-height:1.38;margin-top:26px;color:#e4efe6;width:540px}
+.url{position:absolute;left:72px;bottom:56px;font-weight:700;font-size:26px;letter-spacing:.06em;color:#cfe6d4}
+.chart{position:absolute;right:56px;top:50%;transform:translateY(-50%);width:500px;height:500px;background:rgba(247,248,244,.96);border-radius:28px;box-shadow:0 18px 40px rgba(0,0,0,.25)}
+svg text{font-family:"TeX Gyre Heros Cn",sans-serif;font-weight:700;font-size:21px;letter-spacing:.08em;fill:#5d6b62;text-transform:uppercase}
+</style></head><body>
+<div class="field"></div>
+<div class="hash" style="top:150px"></div><div class="hash" style="bottom:150px"></div>
+<div class="copy">
+  <div class="eyebrow">FBS · 2026 season · 138 teams</div>
+  <h1>Gridiron<br>Dex</h1>
+  <p>Every FBS team turned into six Pokémon&#8209;style base stats and matched to the Pokémon it plays like.</p>
+</div>
+<div class="url">joshmorris49.github.io/cfb-dex</div>
+<div class="chart"><svg id="r" viewBox="-250 -250 500 500" width="500" height="500"></svg></div>
+<script>
+const AX=[["Program",.92],["Rush O",.78],["Pass O",.95],["Big Play",.7],["Pass D",.62],["Rush D",.84]];
+const MON=[.8,.9,.72,.86,.7,.66], R=150;
+const pt=(i,f)=>{const a=-Math.PI/2+i*Math.PI/3;return [Math.cos(a)*R*f,Math.sin(a)*R*f]};
+const poly=fs=>fs.map((f,i)=>pt(i,f).map(v=>v.toFixed(1)).join(",")).join(" ");
+let s="";
+for(const f of [.33,.66,1]) s+=`<polygon points="${poly([f,f,f,f,f,f])}" fill="none" stroke="#d3dad3" stroke-width="2"/>`;
+for(let i=0;i<6;i++){const [x,y]=pt(i,1);s+=`<line x1="0" y1="0" x2="${x}" y2="${y}" stroke="#e3e8e2" stroke-width="2"/>`}
+s+=`<polygon points="${poly(AX.map(a=>a[1]))}" fill="#9e1b32" fill-opacity=".72" stroke="#9e1b32" stroke-width="5" stroke-linejoin="round"/>`;
+s+=`<polygon points="${poly(MON)}" fill="none" stroke="#33413a" stroke-width="4" stroke-dasharray="12 8" stroke-linejoin="round"/>`;
+AX.forEach(([l],i)=>{const [x,y]=pt(i,1.28);s+=`<text x="${x}" y="${y+7}" text-anchor="${Math.abs(x)<5?"middle":x>0?"start":"end"}" dx="${Math.abs(x)<5?0:x>0?-30:30}">${l.toUpperCase()}</text>`});
+document.getElementById("r").innerHTML=s;
+</script>
+</body></html>
