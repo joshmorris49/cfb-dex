@@ -5,6 +5,7 @@ Temple;W;21-17
 Louisiana Tech;L;29-31
 Tulane;W;20-17
 Florida Atlantic;W;56-24
+Tulsa;W;38-35
 ## Charlotte
 The Citadel;L;41-43
 Ole Miss;L;9-41
@@ -20,6 +21,7 @@ Old Dominion;W;20-17
 North Carolina Central;W;42-9
 Rice;W;28-12
 UAB;L;17-30
+Memphis;L;34-41
 ## Florida Atlantic
 Florida;L;21-66
 Navy;W;38-30
@@ -27,6 +29,7 @@ FIU;W;16-10
 Louisiana-Monroe;W;45-17
 Texas Southern;W;66-10
 Army;L;24-56
+Rice;W;51-49
 ## Memphis
 UNLV;W;27-21
 Arkansas State;W;42-24
@@ -35,6 +38,7 @@ UT Martin;W;45-21
 Charlotte;W;59-8
 UAB;W;38-13
 Tulane;L;17-31
+East Carolina;W;41-34
 ## Navy
 Towson;W;42-15
 Florida Atlantic;L;30-38
@@ -42,6 +46,7 @@ UAB;L;20-24
 Air Force;L;9-14
 Tulsa;W;34-26
 UTSA;L;34-38
+North Texas;L;39-49
 ## North Texas
 Indiana;L;16-52
 UNLV;W;44-6
@@ -49,6 +54,7 @@ Texas State;L;35-49
 Houston Christian;W;63-14
 Tulsa;W;45-44
 Charlotte;W;50-10
+Navy;W;49-39
 ## Rice
 Houston Christian;W;31-3
 Notre Dame;L;0-52
@@ -57,6 +63,7 @@ Fresno State;L;24-38
 UTSA;L;14-16
 East Carolina;L;12-28
 Tulsa;L;17-38
+Florida Atlantic;L;49-51
 ## Temple
 Rhode Island;W;38-14
 Penn State;L;9-27
@@ -72,6 +79,7 @@ Kansas State;L;20-31
 Southern Miss;W;24-21
 Army;L;17-20
 Memphis;W;31-17
+UTSA;L;19-42
 ## Tulsa
 Oklahoma State;W;24-10
 Sam Houston State;W;23-17
@@ -80,6 +88,7 @@ Arkansas;L;6-34
 North Texas;L;44-45
 Navy;L;26-34
 Rice;W;38-17
+Army;L;35-38
 ## UAB
 Illinois;L;23-42
 Louisiana-Monroe;W;26-20
@@ -104,6 +113,7 @@ Colorado State;W;59-45
 Rice;W;16-14
 USF;W;31-24
 Navy;W;38-34
+Tulane;W;42-19
 ## Texas
 Texas State;W;59-7
 Ohio State;W;24-23
@@ -111,6 +121,7 @@ UTSA;W;30-6
 Tennessee;W;20-17
 Oklahoma;L;24-27
 Florida;L;24-27
+Ole Miss;W;34-27
 ## Boston College
 Cincinnati;L;15-34
 Rutgers;W;28-21
@@ -118,6 +129,7 @@ Maine;W;22-16
 Virginia Tech;L;14-21
 SMU;L;16-25
 Pittsburgh;W;27-21
+Georgia Tech;W;49-27
 ## California
 UCLA;L;24-45
 Syracuse;W;21-18
@@ -126,6 +138,7 @@ Clemson;L;10-24
 UNLV;L;31-39
 Virginia Tech;W;25-20
 Wake Forest;L;7-41
+SMU;L;20-59
 ## Clemson
 LSU;L;10-51
 Georgia Southern;W;22-7
@@ -133,6 +146,7 @@ North Carolina;W;28-20
 California;W;24-10
 Miami (FL);L;13-41
 Charleston Southern;W;37-0
+Virginia Tech;L;16-20
 ## Duke
 Tulane;W;17-3
 Illinois;W;31-27
@@ -140,6 +154,7 @@ Stanford;W;35-7
 William & Mary;W;62-7
 Georgia Tech;L;25-28
 North Carolina;L;20-24
+Virginia;W;19-16
 ## Florida State
 New Mexico State;W;34-17
 SMU;L;24-27
@@ -155,6 +170,7 @@ Mercer;W;44-11
 Stanford;L;27-34
 Duke;W;28-25
 Virginia Tech;L;24-34
+Boston College;L;27-49
 ## Louisville
 Ole Miss;L;38-41
 Villanova;W;59-13
@@ -170,6 +186,7 @@ Wake Forest;W;33-20
 Central Michigan;W;52-3
 Clemson;W;41-13
 Florida State;W;43-35
+Pittsburgh;W;52-23
 ## NC State
 Virginia;L;8-34
 Richmond;W;73-0
@@ -177,6 +194,7 @@ Vanderbilt;L;31-35
 Appalachian State;W;41-31
 Louisville;W;31-28
 Wake Forest;L;14-38
+Stanford;L;28-31
 ## North Carolina
 TCU;W;15-10
 East Tennessee State;W;35-3
@@ -184,6 +202,7 @@ Clemson;L;20-28
 Notre Dame;L;26-37
 Pittsburgh;W;21-17
 Duke;W;24-20
+Syracuse;L;30-31
 ## Pittsburgh
 Miami (OH);W;59-14
 UCF;W;12-7
@@ -192,6 +211,7 @@ Bucknell;W;59-0
 Virginia Tech;W;35-33
 North Carolina;L;17-21
 Boston College;L;21-27
+Miami (FL);L;23-52
 ## SMU
 Florida State;W;27-24
 UC Davis;W;56-10
@@ -199,6 +219,7 @@ Louisville;L;31-41
 Missouri State;W;34-24
 Boston College;W;25-16
 Virginia;W;23-13
+California;W;59-20
 ## Stanford
 Hawaii;W;37-27
 Miami (FL);L;6-45
@@ -207,6 +228,7 @@ Georgia Tech;W;34-27
 Wake Forest;L;3-57
 Notre Dame;L;7-58
 Elon;W;34-7
+NC State;W;31-28
 ## Syracuse
 New Hampshire;W;66-3
 California;L;18-21
@@ -214,6 +236,7 @@ Pittsburgh;L;13-27
 Connecticut;W;42-41
 Virginia;L;25-28
 Louisville;L;26-34
+North Carolina;W;31-30
 ## Virginia
 NC State;W;34-8
 Norfolk State;W;59-3
@@ -222,6 +245,7 @@ Delaware;W;42-3
 Florida State;L;7-38
 Syracuse;W;28-25
 SMU;L;13-23
+Duke;L;16-19
 ## Virginia Tech
 VMI;W;73-3
 Old Dominion;W;44-21
@@ -230,6 +254,7 @@ Boston College;W;21-14
 Pittsburgh;L;33-35
 California;L;20-25
 Georgia Tech;W;34-24
+Clemson;W;20-16
 ## Wake Forest
 Akron;W;38-16
 Purdue;W;38-36
@@ -245,6 +270,7 @@ Northern Illinois;W;42-17
 Washington State;W;34-24
 Cincinnati;W;34-7
 West Virginia;W;52-31
+Iowa State;W;39-3
 ## Arizona State
 Morgan State;W;70-7
 Texas A&M;L;20-48
@@ -252,6 +278,7 @@ Kansas;W;24-17
 Baylor;L;19-55
 Hawaii;W;30-12
 Texas Tech;L;25-53
+Kansas State;W;28-17
 ## BYU
 Utah Tech;W;63-7
 Arizona;W;28-17
@@ -259,6 +286,7 @@ Colorado State;W;41-23
 TCU;W;17-10
 Iowa State;W;24-10
 Notre Dame;W;28-24
+UCF;L;31-39
 ## Baylor
 Auburn;L;16-17
 Prairie View A&M;W;44-3
@@ -266,6 +294,7 @@ Louisiana Tech;W;36-19
 Colorado;W;23-13
 Arizona State;W;55-19
 TCU;L;6-17
+Kansas;L;24-25
 ## Cincinnati
 Boston College;W;34-15
 Western Carolina;W;62-10
@@ -273,6 +302,7 @@ Miami (OH);W;35-31
 Kansas State;W;31-26
 Arizona;L;7-34
 West Virginia;L;42-45
+Texas Tech;W;37-24
 ## Colorado
 Georgia Tech;W;14-13
 Weber State;W;52-21
@@ -280,6 +310,7 @@ Northwestern;L;7-41
 Baylor;L;13-23
 Texas Tech;L;7-29
 Utah;L;24-27
+Oklahoma State;L;24-57
 ## Houston
 Oregon State;W;33-20
 Southern;W;77-6
@@ -288,6 +319,7 @@ Georgia Southern;W;42-28
 UCF;W;27-17
 Kansas State;W;35-16
 Oklahoma State;W;35-32
+Utah;L;13-21
 ## Iowa State
 Southeast Missouri State;W;38-10
 Iowa;L;13-16
@@ -295,6 +327,7 @@ Bowling Green;W;55-7
 Utah;L;17-31
 West Virginia;W;45-42
 BYU;L;10-24
+Arizona;L;3-39
 ## Kansas
 LIU;W;51-6
 Missouri;L;21-38
@@ -302,6 +335,7 @@ Arizona State;L;17-24
 Middle Tennessee State;W;55-0
 Utah;L;24-41
 Kansas State;L;24-35
+Baylor;W;25-24
 ## Kansas State
 Nicholls State;W;71-3
 Washington State;W;34-7
@@ -309,6 +343,7 @@ Tulane;W;31-20
 Cincinnati;L;26-31
 Houston;L;16-35
 Kansas;W;35-24
+Arizona State;L;17-28
 ## Oklahoma State
 Tulsa;L;10-24
 Oregon;W;39-31
@@ -316,6 +351,7 @@ Murray State;W;59-0
 West Virginia;W;41-24
 UCF;W;42-28
 Houston;L;32-35
+Colorado;W;57-24
 ## TCU
 North Carolina;L;10-15
 Grambling State;W;63-7
@@ -323,6 +359,7 @@ Arkansas State;W;31-7
 UCF;L;13-21
 BYU;L;10-17
 Baylor;W;17-6
+West Virginia;L;20-24
 ## Texas Tech
 Abilene Christian;W;33-10
 Oregon State;W;35-24
@@ -330,6 +367,7 @@ Houston;W;28-26
 Sam Houston State;W;49-14
 Colorado;W;29-7
 Arizona State;W;53-25
+Cincinnati;L;24-37
 ## UCF
 Bethune-Cookman;W;73-6
 Pittsburgh;L;7-12
@@ -337,6 +375,7 @@ Georgia State;W;44-30
 TCU;W;21-13
 Houston;L;17-27
 Oklahoma State;L;28-42
+BYU;W;39-31
 ## Utah
 Idaho;W;66-14
 Arkansas;W;43-10
@@ -344,6 +383,7 @@ Utah State;W;33-0
 Iowa State;W;31-17
 Kansas;W;41-24
 Colorado;W;27-24
+Houston;W;21-13
 ## West Virginia
 Coastal Carolina;W;31-24
 UT Martin;W;52-7
@@ -352,6 +392,7 @@ Oklahoma State;L;24-41
 Iowa State;L;42-45
 Arizona;L;31-52
 Cincinnati;W;45-42
+TCU;W;24-20
 ## Illinois
 UAB;W;42-23
 Duke;L;27-31
@@ -359,6 +400,7 @@ Southern Illinois;W;48-10
 Ohio State;L;19-42
 Purdue;L;17-24
 Michigan State;W;38-37
+Oregon;W;21-10
 ## Indiana
 North Texas;W;52-16
 Howard;W;55-0
@@ -367,6 +409,7 @@ Northwestern;W;29-23
 Rutgers;W;47-15
 Nebraska;W;20-17
 Ohio State;L;15-19
+Michigan;W;13-6
 ## Iowa
 Northern Illinois;W;40-0
 Iowa State;W;16-13
@@ -374,6 +417,7 @@ Northern Iowa;W;55-0
 Michigan;W;20-19
 Ohio State;L;14-31
 Washington;W;41-24
+Minnesota;L;10-13
 ## Maryland
 Hampton;W;62-0
 Connecticut;W;38-14
@@ -389,6 +433,7 @@ UTEP;W;52-17
 Iowa;L;19-20
 Minnesota;L;14-20
 Penn State;W;21-18
+Indiana;L;6-13
 ## Michigan State
 Toledo;W;30-20
 Eastern Michigan;W;35-7
@@ -397,6 +442,7 @@ Nebraska;L;13-31
 Wisconsin;L;3-31
 Illinois;L;37-38
 Northwestern;L;21-24
+UCLA;L;10-28
 ## Minnesota
 Eastern Illinois;W;59-7
 Mississippi State;L;13-38
@@ -404,6 +450,7 @@ Akron;W;41-7
 Washington;W;27-24
 Michigan;W;20-14
 Purdue;L;13-41
+Iowa;W;13-10
 ## Nebraska
 Ohio;W;49-21
 Bowling Green;W;56-7
@@ -419,6 +466,7 @@ Indiana;L;23-29
 Penn State;W;34-13
 Ball State;W;45-14
 Michigan State;W;24-21
+Rutgers;W;42-14
 ## Ohio State
 Ball State;W;56-3
 Texas;L;23-24
@@ -434,6 +482,7 @@ Portland State;W;84-0
 USC;W;41-27
 UCLA;L;15-17
 Nebraska;W;17-14
+Illinois;L;10-21
 ## Penn State
 Marshall;W;45-0
 Temple;W;27-9
@@ -457,6 +506,7 @@ USC;L;35-42
 Howard;W;58-7
 Indiana;L;15-47
 Maryland;W;37-30
+Northwestern;L;14-42
 ## UCLA
 California;W;45-24
 San Diego State;W;28-10
@@ -464,6 +514,7 @@ Purdue;W;52-38
 Maryland;W;54-3
 Oregon;W;17-15
 Wisconsin;W;17-7
+Michigan State;W;28-10
 ## USC
 San Jose State;W;42-26
 Fresno State;W;39-0
@@ -472,6 +523,7 @@ Rutgers;W;42-35
 Oregon;L;27-41
 Washington;W;25-21
 Penn State;W;31-23
+Wisconsin;L;7-24
 ## Washington
 Washington State;W;24-10
 Utah State;W;16-14
@@ -487,6 +539,7 @@ Eastern Michigan;W;54-10
 Penn State;W;24-20
 Michigan State;W;31-3
 UCLA;L;7-17
+USC;W;24-7
 ## Delaware
 Merrimack;W;42-7
 Vanderbilt;L;26-35
@@ -518,6 +571,7 @@ Tennessee;L;9-42
 Arkansas State;L;14-17
 Jacksonville State;L;26-27
 Missouri State;L;21-24
+Liberty;L;6-34
 ## Liberty
 James Madison;L;13-20
 Gardner-Webb;W;24-23
@@ -525,6 +579,7 @@ Ball State;W;51-15
 Coastal Carolina;W;34-17
 Delaware;W;30-14
 Sam Houston State;W;35-3
+Kennesaw State;W;34-6
 ## Middle Tennessee State
 Murray State;W;38-14
 Marshall;L;26-28
@@ -572,6 +627,7 @@ Southern Miss;W;48-20
 Miami (OH);L;21-24
 Syracuse;L;41-42
 Temple;W;34-20
+Massachusetts;W;35-16
 ## Notre Dame
 Wisconsin;W;41-13
 Rice;W;52-0
@@ -588,6 +644,7 @@ UNLV;L;10-38
 Central Michigan;L;17-41
 Eastern Michigan;L;23-25
 Miami (OH);L;14-34
+Kent State;L;20-35
 ## Ball State
 Ohio State;L;3-56
 Stony Brook;W;41-17
@@ -596,6 +653,7 @@ Kent State;L;13-26
 Toledo;L;24-39
 Northwestern;L;14-45
 Bowling Green;W;32-31
+Sacramento State;W;34-17
 ## Bowling Green
 Tarleton State;L;13-20
 Nebraska;L;7-56
@@ -604,6 +662,7 @@ USF;L;6-14
 Miami (OH);W;24-20
 Sacramento State;W;38-10
 Ball State;L;31-32
+Buffalo;L;24-31
 ## Buffalo
 Albany;W;21-17
 FIU;L;20-33
@@ -612,6 +671,7 @@ Robert Morris;W;31-28
 Western Michigan;L;17-20
 Toledo;W;23-8
 Massachusetts;W;25-18
+Bowling Green;W;31-24
 ## Central Michigan
 New Mexico;L;7-38
 Colgate;W;13-10
@@ -620,6 +680,7 @@ Miami (FL);L;3-52
 Akron;W;41-17
 Ohio;L;14-31
 Western Michigan;L;14-21
+Miami (OH);L;27-28
 ## Eastern Michigan
 Sacramento State;W;28-17
 San Jose State;L;21-27
@@ -629,6 +690,7 @@ Lindenwood;W;29-3
 Massachusetts;W;38-14
 Akron;W;25-23
 Toledo;L;14-34
+Ohio;L;20-24
 ## Kent State
 South Carolina;L;0-57
 Wofford;W;36-15
@@ -637,6 +699,7 @@ Ball State;W;26-13
 Ohio;L;10-13
 Western Michigan;L;7-38
 USF;L;2-29
+Akron;W;35-20
 ## Massachusetts
 Rutgers;W;37-21
 Sacred Heart;W;37-10
@@ -645,6 +708,7 @@ Sacramento State;W;35-6
 Eastern Michigan;L;14-38
 Miami (OH);L;19-20
 Buffalo;L;18-25
+Connecticut;L;16-35
 ## Miami (OH)
 Pittsburgh;L;14-59
 Holy Cross;W;45-7
@@ -653,6 +717,7 @@ Connecticut;W;24-21
 Bowling Green;L;20-24
 Massachusetts;W;20-19
 Akron;W;34-14
+Central Michigan;W;28-27
 ## Ohio
 Nebraska;L;21-49
 Jacksonville State;W;29-27
@@ -661,6 +726,7 @@ Stonehill;W;35-7
 Kent State;W;13-10
 Central Michigan;W;31-14
 Sacramento State;W;48-7
+Eastern Michigan;W;24-20
 ## Sacramento State
 Eastern Michigan;L;17-28
 Mississippi Valley State;W;52-0
@@ -669,6 +735,7 @@ North Dakota State;L;10-31
 Massachusetts;L;6-35
 Bowling Green;L;10-38
 Ohio;L;7-48
+Ball State;L;17-34
 ## Toledo
 Michigan State;L;20-30
 Central Connecticut State;W;63-10
@@ -677,6 +744,7 @@ San Diego State;W;41-16
 Ball State;W;39-24
 Buffalo;L;8-23
 Eastern Michigan;W;34-14
+Western Michigan;W;45-38
 ## Western Michigan
 Michigan;L;12-13
 Monmouth (NJ);W;49-14
@@ -685,6 +753,7 @@ Boise State;L;7-32
 Buffalo;W;20-17
 Kent State;W;38-7
 Central Michigan;W;21-14
+Toledo;L;38-45
 ## Air Force
 Duquesne;W;34-0
 North Dakota State;L;32-38
@@ -692,6 +761,7 @@ Nevada;W;36-33
 Navy;W;14-9
 Northern Illinois;W;28-7
 UNLV;W;41-31
+Wyoming;L;14-28
 ## Hawaii
 Stanford;L;27-37
 UNLV;L;6-21
@@ -700,6 +770,7 @@ Wyoming;L;10-27
 San Jose State;L;16-20
 Arizona State;L;12-30
 New Mexico;L;10-21
+Northern Illinois;W;56-21
 ## Nevada
 Western Kentucky;W;49-14
 Montana State;L;7-20
@@ -707,6 +778,7 @@ Middle Tennessee State;L;20-27
 Air Force;L;33-36
 UTEP;W;30-13
 North Dakota State;L;17-31
+San Jose State;W;28-13
 ## New Mexico
 Central Michigan;W;38-7
 Mercyhurst;W;70-7
@@ -714,6 +786,7 @@ Oklahoma;L;6-14
 New Mexico State;W;42-18
 UTEP;W;61-7
 Hawaii;W;21-10
+North Dakota State;W;21-16
 ## North Dakota State
 Jacksonville State;W;33-7
 Fordham;W;38-0
@@ -722,6 +795,7 @@ Sacramento State;W;31-10
 Wyoming;W;28-0
 UNLV;L;7-13
 Nevada;W;31-17
+New Mexico;L;16-21
 ## Northern Illinois
 Iowa;L;0-40
 Illinois State;L;24-28
@@ -729,6 +803,7 @@ Arizona;L;17-42
 Georgia State;L;14-35
 Air Force;L;7-28
 Wyoming;L;23-41
+Hawaii;L;21-56
 ## San Jose State
 USC;L;26-42
 Eastern Michigan;W;27-21
@@ -737,6 +812,7 @@ Fresno State;L;10-26
 Hawaii;W;20-16
 Wyoming;L;13-16
 UTEP;W;24-11
+Nevada;L;13-28
 ## UNLV
 Memphis;L;21-27
 Hawaii;W;21-6
@@ -761,6 +837,7 @@ Hawaii;W;27-10
 North Dakota State;L;0-28
 San Jose State;W;16-13
 Northern Illinois;W;41-23
+Air Force;W;28-14
 ## Boise State
 Oregon;L;27-34
 Memphis;W;38-20
@@ -768,6 +845,7 @@ South Dakota;W;38-24
 Western Michigan;W;32-7
 Utah State;W;37-18
 Fresno State;W;38-31
+Washington State;W;31-10
 ## Colorado State
 Wyoming;W;35-13
 Southern Utah;W;58-24
@@ -775,6 +853,7 @@ BYU;L;23-41
 UTSA;L;45-59
 Oregon State;L;26-56
 Texas State;L;27-66
+San Diego State;W;56-49
 ## Fresno State
 USC;L;0-39
 Sacramento State;W;49-3
@@ -799,6 +878,7 @@ Toledo;L;16-41
 Texas State;W;31-29
 Oregon State;L;14-66
 Fresno State;W;26-23
+Colorado State;L;49-56
 ## Texas State
 Texas;L;7-59
 UTSA;L;26-31
@@ -806,6 +886,7 @@ North Texas;W;49-35
 Incarnate Word;W;63-10
 San Diego State;L;29-31
 Colorado State;W;66-27
+Utah State;W;20-17
 ## Utah State
 Idaho State;L;17-29
 Washington;L;14-16
@@ -813,6 +894,7 @@ Utah;L;0-33
 Troy;W;21-10
 Boise State;L;18-37
 Washington State;W;17-16
+Texas State;L;17-20
 ## Washington State
 Washington;L;10-24
 Kansas State;L;7-34
@@ -821,6 +903,7 @@ Arizona;L;24-34
 Fresno State;L;6-26
 Utah State;L;16-17
 Oregon State;L;30-48
+Boise State;L;10-31
 ## Alabama
 East Carolina;W;48-10
 Kentucky;W;45-17
@@ -829,6 +912,7 @@ South Carolina;W;49-18
 Mississippi State;W;56-23
 Georgia;L;17-20
 Tennessee;L;10-26
+Texas A&M;W;31-20
 ## Arkansas
 North Alabama;W;31-14
 Utah;L;10-43
@@ -844,6 +928,7 @@ Florida;L;39-44
 Vanderbilt;W;21-15
 Tennessee;L;14-24
 Georgia;W;27-24
+LSU;L;17-38
 ## Florida
 Florida Atlantic;W;66-21
 Campbell;W;52-3
@@ -868,6 +953,7 @@ South Alabama;W;45-21
 South Carolina;W;35-34
 LSU;W;35-34
 Oklahoma;W;21-13
+Vanderbilt;W;34-17
 ## LSU
 Clemson;W;51-10
 Louisiana Tech;W;45-14
@@ -876,6 +962,7 @@ Texas A&M;W;35-6
 McNeese State;W;63-14
 Kentucky;L;34-35
 Mississippi State;W;31-0
+Auburn;W;38-17
 ## Mississippi State
 Louisiana-Monroe;W;62-13
 Minnesota;W;38-13
@@ -883,6 +970,7 @@ South Carolina;W;41-34
 Missouri;W;31-24
 Alabama;L;23-56
 LSU;L;0-31
+Oklahoma;L;15-23
 ## Missouri
 Arkansas-Pine Bluff;W;54-14
 Kansas;W;38-21
@@ -898,6 +986,7 @@ New Mexico;W;14-6
 Georgia;L;13-41
 Texas;W;27-24
 Kentucky;L;13-21
+Mississippi State;W;23-15
 ## Ole Miss
 Louisville;W;41-38
 Charlotte;W;41-9
@@ -905,6 +994,7 @@ LSU;W;32-24
 Florida;L;28-52
 Vanderbilt;W;52-17
 Missouri;W;31-3
+Texas;L;27-34
 ## South Carolina
 Kent State;W;57-0
 Towson;W;45-9
@@ -912,6 +1002,7 @@ Mississippi State;L;34-41
 Alabama;L;18-49
 Kentucky;L;34-35
 Florida;W;38-19
+Tennessee;W;27-24
 ## Tennessee
 Furman;W;56-9
 Georgia Tech;W;45-24
@@ -920,6 +1011,7 @@ Texas;L;17-20
 Auburn;W;24-14
 Arkansas;W;24-17
 Alabama;W;26-10
+South Carolina;L;24-27
 ## Texas A&M
 Missouri State;W;50-0
 Arizona State;W;48-20
@@ -928,6 +1020,7 @@ LSU;L;6-35
 Arkansas;W;34-7
 Missouri;L;6-27
 The Citadel;W;41-0
+Alabama;L;20-31
 ## Vanderbilt
 Austin Peay;W;28-9
 Delaware;W;35-26
@@ -936,6 +1029,7 @@ Auburn;L;15-21
 Georgia;L;14-38
 Ole Miss;L;17-52
 Arkansas;L;21-31
+Kentucky;L;17-34
 ## Appalachian State
 Maine;W;55-3
 East Carolina;W;27-24
@@ -943,6 +1037,7 @@ Charlotte;W;26-21
 NC State;L;31-41
 Old Dominion;L;3-10
 Coastal Carolina;W;35-32
+James Madison;W;34-31
 ## Arkansas State
 Memphis;L;24-42
 West Georgia;W;52-7
@@ -951,6 +1046,7 @@ Kennesaw State;W;17-14
 Louisiana;L;20-23
 South Alabama;L;49-56
 Southern Miss;W;23-13
+Georgia State;W;38-32
 ## Coastal Carolina
 West Virginia;L;24-31
 Fordham;W;45-7
@@ -974,6 +1070,7 @@ UCF;L;30-44
 Northern Illinois;W;35-14
 Old Dominion;W;42-10
 James Madison;L;22-49
+Arkansas State;L;32-38
 ## James Madison
 Liberty;W;20-13
 Wagner;W;87-3
@@ -982,6 +1079,7 @@ Old Dominion;W;46-20
 Marshall;W;45-17
 Georgia Southern;W;27-24
 Georgia State;W;49-22
+Appalachian State;L;31-34
 ## Louisiana
 Lamar;W;38-7
 USC;L;30-49
@@ -990,6 +1088,7 @@ Charlotte;W;34-7
 Arkansas State;W;23-20
 Louisiana Tech;L;31-32
 Troy;W;33-6
+Southern Miss;L;31-35
 ## Louisiana Tech
 Northwestern State;W;80-6
 LSU;L;14-45
@@ -997,6 +1096,7 @@ Baylor;L;19-36
 Army;W;31-29
 Louisiana;W;32-31
 Louisiana-Monroe;W;24-0
+Old Dominion;W;26-0
 ## Louisiana-Monroe
 Mississippi State;L;13-62
 UAB;L;20-26
@@ -1004,6 +1104,7 @@ Southeastern Louisiana;L;35-38
 Florida Atlantic;L;17-45
 South Alabama;L;35-52
 Louisiana Tech;L;0-24
+Troy;W;21-14
 ## Marshall
 Penn State;L;0-45
 Middle Tennessee State;W;28-26
@@ -1020,6 +1121,7 @@ James Madison;L;20-46
 Georgia State;L;10-42
 Appalachian State;W;10-3
 Georgia Southern;L;15-23
+Louisiana Tech;L;0-26
 ## South Alabama
 Southeastern Louisiana;W;39-14
 Tulane;L;24-28
@@ -1035,6 +1137,7 @@ Connecticut;L;20-48
 Tulane;L;21-24
 Troy;L;34-55
 Arkansas State;L;13-23
+Louisiana;W;35-31
 ## Troy
 Sam Houston State;W;24-21
 Alabama State;W;34-17
@@ -1042,3 +1145,4 @@ Missouri;L;17-27
 Utah State;L;10-21
 Southern Miss;W;55-34
 Louisiana;L;6-33
+Louisiana-Monroe;L;14-21

@@ -208,7 +208,7 @@ dialog::backdrop{background:rgba(8,14,10,.55)}
   <div class="view" id="view-week" role="tabpanel" aria-labelledby="tab-week" hidden>
     <div class="wk-head">
       <h2 id="wk-title">This Week</h2>
-      <p>Every FBS-vs-FBS game this week. The overlaid shapes compare the two teams' stat lines: the away team is solid, the home team dashed. Each bar shows who has the edge when a team runs or passes against the other's defense, plus big plays and program strength. The pick comes from each team's scoring margin, adjusted for schedule, plus 2.5 points for home field. Tap a team for its full entry.</p>
+      <p>Every FBS-vs-FBS game this week. The overlaid shapes compare the two teams' stat lines: the away team is solid, the home team dashed. Each bar shows who has the edge when a team runs or passes against the other's defense, plus big plays and program strength. The pick comes from each team's scoring margin, adjusted for schedule, plus 2.5 points for home field (none at neutral sites). Tap a team for its full entry.</p>
     </div>
     <div class="controls" role="group" aria-label="Sort games">
       <span class="lbl">Sort</span>
@@ -422,8 +422,8 @@ function bestHit(att, def){
 const mult = m => m===0 ? "no effect" : m===.25 ? "¼×" : m===.5 ? "½×" : m===1 ? "1×" : m===2 ? "2×" : m===4 ? "4×" : m+"×";
 const phi = x => { const t = 1/(1+0.2316419*Math.abs(x)); const d = 0.3989423*Math.exp(-x*x/2);
   const p = d*t*(0.3193815+t*(-0.3565638+t*(1.781478+t*(-1.821256+t*1.330274)))); return x>0 ? 1-p : p; };
-function project(a, h){
-  const margin = (h.srs - a.srs) + HFA;           // positive = home favored
+function project(a, h, neutral){
+  const margin = (h.srs - a.srs) + (neutral ? 0 : HFA);  // positive = home (second-listed) team favored
   return {margin, pHome: phi(margin / SIGMA)};
 }
 function radar2(a, h){
@@ -457,7 +457,7 @@ function side(d, home){
 }
 const wkList = document.getElementById("wk-list");
 let wkSort = "kick";
-const GAMES = WEEK.map((g,i)=>{ const a = BY[g.away], h = BY[g.home]; return {...g, i, a, h, ...project(a,h)}; }).filter(g=>g.a && g.h);
+const GAMES = WEEK.map((g,i)=>{ const a = BY[g.away], h = BY[g.home]; return {...g, i, a, h, ...project(a,h,!!g.neutral)}; }).filter(g=>g.a && g.h);
 function renderWeek(){
   const days = [...new Set(GAMES.map(g=>g.date))].sort();
   const fmt = iso => new Date(iso + "T12:00:00").toLocaleDateString("en-US",{month:"short",day:"numeric"});
@@ -467,10 +467,10 @@ function renderWeek(){
   wkList.innerHTML = list.map(g=>{
     const {a,h} = g, fav = g.margin >= 0 ? h : a, pts = Math.abs(g.margin), p = g.margin >= 0 ? g.pHome : 1-g.pHome;
     const ah = bestHit(a.match.types, h.match.types), ha = bestHit(h.match.types, a.match.types);
-    const when = [g.day, g.time ? g.time + " ET" : "Time TBA"].join(" · ");
+    const when = [g.day, g.time ? g.time + " ET" : "Time TBA", g.neutral ? "in " + g.neutral : ""].filter(Boolean).join(" · ");
     return `<article class="mu" style="--ta:${a.col.tc};--th:${h.col.tc}">
       <div class="mu-meta"><span>${esc(when)}</span><span>${esc(g.tv||"")}</span></div>
-      <div class="mu-teams">${side(a,false)}${side(h,true)}<span class="mu-at" aria-hidden="true">at</span></div>
+      <div class="mu-teams">${side(a,false)}${side(h,true)}<span class="mu-at" aria-hidden="true">${g.neutral ? "vs" : "at"}</span></div>
       <div class="mu-body">${radar2(a,h)}<div class="bts">${battles(a,h)}</div></div>
       <div class="mu-leg"><span><i style="border-color:var(--ta)"></i>${esc(a.team)}</span><span><i style="border-color:var(--th);border-top-style:dashed"></i>${esc(h.team)}</span></div>
       <div class="mu-verdict">

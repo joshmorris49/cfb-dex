@@ -1,138 +1,139 @@
 Name,Ret,Yards
-Arizona,5,125
-Massachusetts,6,149
-Illinois,4,98
-Florida,8,193
-Florida Atlantic,6,137
-Virginia Tech,17,348
-Coastal Carolina,8,162
-James Madison,13,247
-Ball State,2,38
-Louisiana Tech,10,183
-Minnesota,18,325
-Rice,2,35
-Missouri,8,137
-Oklahoma,9,154
-Kansas,10,164
-Texas State,9,147
-New Mexico,13,210
-USC,13,205
-Oklahoma State,12,188
-Old Dominion,10,154
-South Carolina,13,198
-Iowa State,9,135
-UCF,11,163
-Jacksonville State,9,133
-Nevada,13,186
-Clemson,12,171
-Colorado State,5,71
-Washington State,11,155
-Iowa,16,215
-Kansas State,12,161
-North Texas,7,93
-Syracuse,18,239
-UAB,11,145
-Michigan State,10,131
-Texas,15,192
-Miami (FL),7,89
-BYU,15,188
-TCU,15,184
-Northern Illinois,5,61
-Baylor,15,178
-Notre Dame,12,142
-Boise State,6,71
-Georgia Tech,6,69
-Indiana,7,80
-Western Michigan,8,89
-Army,9,99
-Temple,9,99
-West Virginia,5,55
-Sacramento State,7,76
-Louisiana,7,76
-Duke,8,85
-North Dakota State,8,85
-Penn State,18,191
-Tennessee,11,115
-Vanderbilt,10,104
-Stanford,11,114
-Texas Tech,13,132
-Cincinnati,8,80
-Houston,8,80
-Western Kentucky,7,70
-LSU,6,59
-Florida State,11,108
-Texas A&M,12,117
-Maryland,8,78
-UCLA,11,107
-SMU,14,133
-NC State,12,114
-Fresno State,10,95
-Missouri State,8,76
-Wisconsin,5,47
-Pittsburgh,17,159
-Connecticut,8,73
-Wyoming,12,109
-Georgia State,6,54
-Southern Miss,6,54
-UNLV,6,53
-Eastern Michigan,8,70
-Arkansas State,6,52
-Toledo,7,60
-UTSA,13,109
-Georgia,15,124
-Oregon,10,82
-Oregon State,14,114
-Louisville,7,57
-USF,5,40
-Rutgers,3,24
-Kentucky,10,79
-Ole Miss,6,47
-Marshall,6,47
-San Jose State,8,62
-Sam Houston State,11,85
-Alabama,9,69
-Purdue,9,67
-Wake Forest,9,66
-South Alabama,3,22
-Miami (OH),7,50
-Utah,13,92
-Arizona State,6,41
-Buffalo,8,53
-FIU,14,92
-North Carolina,7,46
-Northwestern,6,39
-Ohio State,19,120
-Virginia,7,44
-Akron,8,50
-San Diego State,14,87
-Arkansas,7,43
-Ohio,8,49
-Utah State,12,72
-Kent State,4,24
-Middle Tennessee State,9,53
-Washington,8,47
-Nebraska,18,103
-Bowling Green,3,17
-Louisiana-Monroe,5,28
-Kennesaw State,3,16
-Tulane,8,42
-California,9,47
-Tulsa,6,31
-Georgia Southern,13,65
-UTEP,6,30
-Michigan,8,39
-Central Michigan,5,24
-Navy,9,38
-Liberty,8,33
-Hawaii,9,37
-Memphis,6,23
-Appalachian State,6,22
-Delaware,7,25
-Charlotte,5,11
-Auburn,6,13
-Colorado,7,14
-East Carolina,13,24
-Boston College,5,8
-Troy,5,5
-New Mexico State,6,4
+Army,11,115
 Air Force,1,0
+West Virginia,5,55
+Texas State,12,156
+Navy,10,45
+Rice,2,35
+Memphis,9,49
+James Madison,15,271
+Houston,8,80
+Tennessee,11,115
+Louisville,7,57
+South Alabama,3,22
+Ohio,10,73
+Kansas State,14,189
+Temple,9,99
+Boise State,8,79
+Indiana,7,80
+Louisiana,7,76
+South Carolina,15,203
+Cincinnati,8,80
+UCLA,12,112
+Georgia,15,124
+LSU,6,59
+Nebraska,18,103
+Florida,8,193
+Miami (FL),10,117
+Liberty,9,34
+Utah,15,100
+Wyoming,12,109
+Toledo,8,82
+Central Michigan,6,35
+New Mexico,17,279
+Notre Dame,12,142
+Florida State,11,108
+Duke,10,134
+UTSA,14,109
+Kansas,11,174
+BYU,18,191
+Georgia State,6,54
+Troy,7,33
+North Dakota State,13,160
+UNLV,6,53
+UAB,11,145
+Iowa,21,260
+Kentucky,11,91
+Pittsburgh,18,161
+Nevada,16,207
+Connecticut,9,97
+Texas Tech,15,141
+Buffalo,9,53
+Western Michigan,8,89
+Northwestern,6,39
+Alabama,9,69
+Oklahoma State,14,220
+Missouri,8,137
+Texas A&M,12,117
+North Texas,8,169
+Massachusetts,7,154
+Tulsa,7,28
+Marshall,6,47
+Virginia,8,51
+Auburn,7,12
+Iowa State,9,135
+Wake Forest,9,66
+Ohio State,19,120
+USC,15,215
+New Mexico State,8,28
+Mississippi State,1,9
+Jacksonville State,9,133
+Virginia Tech,18,363
+Coastal Carolina,8,162
+Colorado State,7,90
+NC State,12,114
+San Diego State,15,90
+Oregon State,14,114
+USF,5,40
+Miami (OH),9,66
+Middle Tennessee State,9,53
+UCF,12,161
+Fresno State,10,95
+San Jose State,13,72
+Syracuse,20,247
+Western Kentucky,7,70
+Ball State,3,58
+UTEP,6,30
+East Carolina,16,36
+Maryland,8,78
+Arkansas State,8,88
+Akron,8,50
+Appalachian State,7,33
+Ole Miss,7,65
+Clemson,15,202
+Louisiana Tech,12,202
+Penn State,18,191
+Tulane,12,38
+Wisconsin,5,47
+Washington State,12,173
+Illinois,4,98
+Baylor,15,178
+Arizona,6,127
+Purdue,9,49
+Missouri State,8,76
+FIU,14,92
+Michigan,10,64
+Boston College,5,8
+Kennesaw State,4,20
+Arizona State,8,71
+Georgia Southern,13,65
+SMU,16,157
+Colorado,9,35
+Eastern Michigan,9,70
+Oregon,11,95
+Vanderbilt,11,149
+Michigan State,10,131
+Rutgers,3,24
+Texas,18,217
+Southern Miss,8,55
+Old Dominion,10,154
+Delaware,7,25
+Arkansas,7,43
+Charlotte,5,11
+Georgia Tech,7,85
+Sacramento State,7,76
+Bowling Green,3,17
+Washington,8,47
+Stanford,11,114
+Louisiana-Monroe,8,31
+Utah State,13,72
+Kent State,4,24
+North Carolina,9,68
+Florida Atlantic,8,231
+TCU,16,191
+California,11,66
+Minnesota,21,384
+Northern Illinois,7,69
+Sam Houston State,14,96
+Oklahoma,10,152
+Hawaii,11,49
