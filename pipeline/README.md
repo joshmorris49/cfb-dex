@@ -26,4 +26,8 @@ All 2026 stats come from [cfbstats.com](https://cfbstats.com/2026/conference/ind
 
 The preseason AP poll is listed at the top of `build_2026.py`. `national.csv` holds base stats for all 1,025 Pokémon.
 
+Also in `data/`: `week.csv` (the This Week games, with an optional `neutral` site) and `through.txt` (the "through" date shown on the page).
+
+`og.html` is the source for `../og.png`, the link-preview image; re-render it with `python3 og.py` if you change it.
+
 To refresh for a new week, re-pull the cfbstats tables and schedules into `data/` and run `./build.sh`.

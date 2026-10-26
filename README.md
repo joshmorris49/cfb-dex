@@ -21,6 +21,10 @@ Every FBS team's 2026 season, turned into six Pokémon-style base stats and matc
 2. **Scaling.** Each team's standing among FBS teams is placed on the national dex's own spread for that stat, so a median team gets median Pokémon stats.
 3. **Matching.** Every team is compared with every Pokémon, and the one-to-one pairing with the smallest total gap wins. No two teams share a Pokémon.
 
+## Gen 1 edition
+
+The **Gen 1** tab runs the same team ratings through steps 2 and 3 using only Pokémon #1–151, so every team gets a Kanto match (13 of the 151 go unused). Link to it directly with `#gen1`.
+
 ## Sprites
 
 Sprites live in `sprites/`, named by national dex number (`sprites/493.png`). If one is missing, its slot shows the dex number instead. Pokémon sprites and names belong to Nintendo, Creatures and GAME FREAK; this is an unofficial fan project.

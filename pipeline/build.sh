@@ -5,3 +5,4 @@ cd "$(dirname "$0")"
 python3 build_2026.py
 python3 add_colors.py dex_2026.json dex_colored.json data/colors.csv > /dev/null
 python3 make_page.py
+rm -f dex_2026.json dex_colored.json dex_meta.json
